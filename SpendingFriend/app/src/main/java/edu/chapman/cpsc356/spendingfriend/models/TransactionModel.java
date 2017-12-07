@@ -8,6 +8,6 @@ public class TransactionModel
 {
     private double amount;
     private AccountModel account;
-    
+
 
 }

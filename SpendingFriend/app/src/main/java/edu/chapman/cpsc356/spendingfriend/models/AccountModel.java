@@ -15,7 +15,7 @@ public class AccountModel
     private String name;
     private int number;
     private int type;
-    private double amount;
+    private double balance;
 
     //Getters
     public String getName() {
@@ -30,8 +30,8 @@ public class AccountModel
         return type;
     }
 
-    public double getAmount() {
-        return amount;
+    public double getBalance() {
+        return balance;
     }
 
     //Setters
@@ -47,7 +47,7 @@ public class AccountModel
         this.type = type;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setAmount(double balance) {
+        this.balance = balance;
     }
 }
