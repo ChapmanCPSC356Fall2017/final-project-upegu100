@@ -1,5 +1,6 @@
 package edu.chapman.cpsc356.spendingfriend.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void onAccountsClick(View view)
     {
+        Intent intent = new Intent(this, AccountsActivity.class);
+        startActivity(intent);
     }
 
     public void onTransactionsClick(View view)

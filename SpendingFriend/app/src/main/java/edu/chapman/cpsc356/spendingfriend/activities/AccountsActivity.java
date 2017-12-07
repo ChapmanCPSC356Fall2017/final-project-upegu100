@@ -16,11 +16,4 @@ public class AccountsActivity extends SingleFragmentActivity
         this.accountFragment = new AccountFragment();
         return this.accountFragment;
     }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_accounts);
-    }
 }
