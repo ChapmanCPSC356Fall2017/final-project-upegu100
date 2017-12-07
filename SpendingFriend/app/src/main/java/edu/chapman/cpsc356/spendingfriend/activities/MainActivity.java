@@ -18,8 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onAccountsClick(View view)
     {
-        Intent intent = new Intent(this, AccountsActivity.class);
-        startActivity(intent);
+
     }
 
     public void onTransactionsClick(View view)
