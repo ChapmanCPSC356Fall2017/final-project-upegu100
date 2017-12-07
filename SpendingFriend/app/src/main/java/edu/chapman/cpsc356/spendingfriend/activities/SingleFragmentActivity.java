@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import edu.chapman.cpsc356.spendingfriend.R;
+import edu.chapman.cpsc356.spendingfriend.fragments.AccountFragment;
 
-public abstract class SingleFragmentActivity extends AppCompatActivity {
+public abstract class SingleFragmentActivity extends AppCompatActivity
+{
 
     /*getFragment() method*/
     protected abstract Fragment getFragment();
