@@ -4,9 +4,10 @@
     android:layout_height="match_parent"
     tools:context="edu.chapman.cpsc356.spendingfriend.fragments.AccountListFragment">
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_accounts"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Account List Fragment" />
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
 
 </FrameLayout>
