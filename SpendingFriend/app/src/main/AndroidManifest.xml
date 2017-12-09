@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.SingleFragmentActivity" />
-        <activity android:name=".activities.AccountsActivity"></activity>
+        <activity android:name=".activities.AccountActivity" />
+        <activity android:name=".activities.AccountListActivity"></activity>
     </application>
 
 </manifest>
