@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void onTransactionsClick(View view)
     {
+        Intent intent = new Intent(this, TransactionActivity.class);
+        startActivity(intent);
     }
 
     public void onBudgetClick(View view)

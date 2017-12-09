@@ -17,10 +17,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.SingleFragmentActivity" />
-        <activity android:name=".activities.AccountActivity"
-            android:parentActivityName=".activities.AccountListActivity"/>
-        <activity android:name=".activities.AccountListActivity"
-            android:parentActivityName=".activities.MainActivity"></activity>
+        <activity
+            android:name=".activities.AccountActivity"
+            android:parentActivityName=".activities.AccountListActivity" />
+        <activity
+            android:name=".activities.AccountListActivity"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity android:name=".activities.TransactionActivity"></activity>
     </application>
 
 </manifest>
