@@ -1,5 +1,7 @@
 package edu.chapman.cpsc356.spendingfriend.activities;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,9 +32,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void onBudgetClick(View view)
     {
+        Intent intent = new Intent(this, BudgetActivity.class);
+        startActivity(intent);
     }
 
     public void onSummaryClick(View view)
     {
     }
+
 }

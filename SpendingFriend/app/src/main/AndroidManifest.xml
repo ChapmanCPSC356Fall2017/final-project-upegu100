@@ -23,9 +23,13 @@
         <activity
             android:name=".activities.AccountListActivity"
             android:parentActivityName=".activities.MainActivity" />
-        <activity android:name=".activities.TransactionActivity"
-            android:parentActivityName=".activities.TransactionListActivity"/>
-        <activity android:name=".activities.TransactionListActivity"
+        <activity
+            android:name=".activities.TransactionActivity"
+            android:parentActivityName=".activities.TransactionListActivity" />
+        <activity
+            android:name=".activities.TransactionListActivity"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity android:name=".activities.BudgetActivity"
             android:parentActivityName=".activities.MainActivity"></activity>
     </application>
 
