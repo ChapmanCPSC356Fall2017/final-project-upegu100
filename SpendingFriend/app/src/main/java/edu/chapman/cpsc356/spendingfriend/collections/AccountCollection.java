@@ -10,6 +10,7 @@ import edu.chapman.cpsc356.spendingfriend.models.AccountModel;
 
 public class AccountCollection
 {
+    //Static Variables and Methods
     private static AccountCollection accountCollection;
 
     private static AccountCollection GetInstance()
@@ -24,11 +25,13 @@ public class AccountCollection
     //Member Variables
     private ArrayList<AccountModel> accounts;
 
+    //Constructors
     public AccountCollection()
     {
         this.accounts = new ArrayList<AccountModel>();
     }
 
+    //Member Methods
     public ArrayList<AccountModel> getAccounts(){return this.accounts;}
 
     public AccountModel getAccount(int number)

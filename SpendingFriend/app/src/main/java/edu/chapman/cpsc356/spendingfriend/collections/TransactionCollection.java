@@ -23,12 +23,27 @@ public class TransactionCollection
     }
 
     //Member Variables
+    private ArrayList<TransactionModel> transactions;
 
-    private ArrayList<TransactionModel> transactionModels;
-
+    //Constructor
     public TransactionCollection()
     {
-        this.transactionModels = new ArrayList<TransactionModel>();
+        this.transactions = new ArrayList<TransactionModel>();
+    }
+
+    //Member Methods
+    public ArrayList<TransactionModel> getTransactions() {return this.transactions;}
+
+    public TransactionModel getTransaction(int id)
+    {
+        for (TransactionModel transaction : transactions)
+        {
+            if (transaction.getId() == id)
+            {
+                return transaction;
+            }
+        }
+        return null;
     }
 
 
