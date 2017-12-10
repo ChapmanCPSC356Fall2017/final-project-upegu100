@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.SingleFragmentActivity" />
+
         <activity
             android:name=".activities.AccountActivity"
             android:parentActivityName=".activities.AccountListActivity" />
@@ -29,7 +29,10 @@
         <activity
             android:name=".activities.TransactionListActivity"
             android:parentActivityName=".activities.MainActivity" />
-        <activity android:name=".activities.BudgetActivity"
+        <activity
+            android:name=".activities.BudgetActivity"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity android:name=".activities.SummaryActivity"
             android:parentActivityName=".activities.MainActivity"></activity>
     </application>
 

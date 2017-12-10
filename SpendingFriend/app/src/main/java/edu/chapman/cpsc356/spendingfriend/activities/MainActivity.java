@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void onSummaryClick(View view)
     {
+        Intent intent = new Intent (this, SummaryActivity.class);
+        startActivity(intent);
     }
 
 }
