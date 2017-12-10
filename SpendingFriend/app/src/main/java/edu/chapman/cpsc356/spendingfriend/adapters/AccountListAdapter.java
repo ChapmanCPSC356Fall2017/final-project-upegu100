@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import edu.chapman.cpsc356.spendingfriend.R;
 import edu.chapman.cpsc356.spendingfriend.activities.AccountActivity;
@@ -41,14 +42,22 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
 
     public class AccountViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        private TextView accountNameTextView;
+        private TextView accountBalanceTextView;
+
         public AccountViewHolder(View itemView)
         {
             super(itemView);
+
+            itemView.setOnClickListener(this);
+            this.accountNameTextView = itemView.findViewById(R.id.tv_account_name);
+            this.accountBalanceTextView = itemView.findViewById(R.id.tv_account_balance);
         }
 
         public void setUp(AccountModel account)
         {
-
+            this.accountNameTextView.setText(account.getName());
+            this.accountBalanceTextView.setText(Double.toString(account.getBalance()));
         }
 
         @Override

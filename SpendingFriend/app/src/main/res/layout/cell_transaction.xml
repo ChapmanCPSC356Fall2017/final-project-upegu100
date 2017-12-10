@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
+        android:id="@+id/tv_transaction_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="cell_transaction"/>
+        android:layout_marginStart="10dp"
+        android:textSize="25sp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:ellipsize="end"
+        android:maxLines="1"
+        tools:text="Account Name"/>
+
+    <TextView
+        android:id="@+id/tv_transaction_number"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textSize="20sp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:ellipsize="end"
+        android:maxLines="1"
+        tools:text="Account Type"/>
 
 </android.support.constraint.ConstraintLayout>

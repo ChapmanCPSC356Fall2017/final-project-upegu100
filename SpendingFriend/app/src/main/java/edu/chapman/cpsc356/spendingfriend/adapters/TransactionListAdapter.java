@@ -42,8 +42,10 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
 
     public class TransactionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TransactionViewHolder(View itemView) {
+        public TransactionViewHolder(View itemView)
+        {
             super(itemView);
+            itemView.setOnClickListener(this);
         }
 
         public void setUp(TransactionModel transaction)

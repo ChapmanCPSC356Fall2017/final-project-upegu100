@@ -50,6 +50,6 @@ public class AccountCollection
 
     private void generateFakeData()
     {
-        this.accounts.add(new AccountModel("Test Account"));
+        this.accounts.add(new AccountModel("Test Account", 1000));
     }
 }
