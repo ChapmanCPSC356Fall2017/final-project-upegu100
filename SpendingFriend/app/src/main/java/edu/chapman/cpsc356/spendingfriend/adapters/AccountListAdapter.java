@@ -1,6 +1,5 @@
 package edu.chapman.cpsc356.spendingfriend.adapters;
 
-import android.accounts.Account;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -57,7 +56,7 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
         public void setUp(AccountModel account)
         {
             this.accountNameTextView.setText(account.getName());
-            this.accountBalanceTextView.setText(Double.toString(account.getBalance()));
+            this.accountBalanceTextView.setText(Double.toString(account.getStartingBalance()));
         }
 
         @Override

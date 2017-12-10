@@ -15,48 +15,44 @@ public class AccountModel
     private String name;
     private int number;
     private int type;
-    private double balance;
+    private double startingBalance;
+    private double currentBalance;
+
 
     //Constructors
     public AccountModel(){}
 
-    public AccountModel(String name, double balance)
+    public AccountModel(String name, double startingBalance)
     {
         this.name = name;
-        this.balance = balance;
+        this.startingBalance = startingBalance;
     }
 
     //Getters
     public String getName() {
-        return name;
+        return this.name;
     }
-
     public int getNumber() {
-        return number;
+        return this.number;
     }
-
-    public int getType() {
-        return type;
-    }
-
-    public double getBalance() {
-        return balance;
+    public int getType() { return this.type; }
+    public double getStartingBalance() {return this.startingBalance;}
+    public double getCurrentBalance() {
+        return this.currentBalance;
     }
 
     //Setters
     public void setName(String name) {
         this.name = name;
     }
-
     public void setNumber(int number) {
         this.number = number;
     }
-
     public void setType(int type) {
         this.type = type;
     }
-
-    public void setAmount(double balance) {
-        this.balance = balance;
+    public void setStartingBalance(double startingBalance){this.startingBalance = startingBalance;}
+    public void setAmount(double currentBalance) {
+        this.currentBalance = currentBalance;
     }
 }
