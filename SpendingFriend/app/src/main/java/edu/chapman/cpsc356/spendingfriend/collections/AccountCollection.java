@@ -13,7 +13,7 @@ public class AccountCollection
     //Static Variables and Methods
     private static AccountCollection accountCollection;
 
-    private static AccountCollection GetInstance()
+    public static AccountCollection GetInstance()
     {
         if (accountCollection == null)
         {
@@ -29,6 +29,7 @@ public class AccountCollection
     public AccountCollection()
     {
         this.accounts = new ArrayList<AccountModel>();
+        generateFakeData();
     }
 
     //Member Methods
@@ -45,5 +46,10 @@ public class AccountCollection
         }
 
         return null;
+    }
+
+    private void generateFakeData()
+    {
+        this.accounts.add(new AccountModel("Test Account"));
     }
 }

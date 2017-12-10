@@ -17,6 +17,9 @@ public class AccountModel
     private int type;
     private double balance;
 
+    //TEST CONSTRUCTOR
+    public AccountModel(String name){this.name = name;}
+
     //Getters
     public String getName() {
         return name;

@@ -13,7 +13,7 @@ public class TransactionCollection
     //Static methods
     private static TransactionCollection transactionCollection;
 
-    private static TransactionCollection GetInstance()
+    public static TransactionCollection GetInstance()
     {
         if (transactionCollection == null)
         {
