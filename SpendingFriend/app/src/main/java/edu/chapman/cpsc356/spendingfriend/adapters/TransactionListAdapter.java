@@ -43,6 +43,7 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
 
     public class TransactionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        private TransactionModel transaction;
         private TextView transactionAmountTextView;
 
         public TransactionViewHolder(View itemView)
@@ -54,6 +55,7 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
 
         public void setUp(TransactionModel transaction)
         {
+            this.transaction = transaction;
             this.transactionAmountTextView.setText(Double.toString(transaction.getAmount()));
         }
 
@@ -61,6 +63,7 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
         public void onClick(View view)
         {
             Intent transactionIntent = new Intent(view.getContext(), TransactionActivity.class);
+            transactionIntent.putExtra(TransactionActivity.EXTRA_TRANSACTION_ID, this.transaction.getId());
             view.getContext().startActivity(transactionIntent);
         }
     }

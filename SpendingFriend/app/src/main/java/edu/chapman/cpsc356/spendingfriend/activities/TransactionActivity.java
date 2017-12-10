@@ -9,13 +9,15 @@ import edu.chapman.cpsc356.spendingfriend.fragments.TransactionFragment;
 
 public class TransactionActivity extends SingleFragmentActivity
 {
-
+    public static final String EXTRA_TRANSACTION_ID = "extra_transation_id";
     private TransactionFragment transactionFragment;
 
     @Override
     protected Fragment getFragment()
     {
+        Bundle b = getIntent().getExtras();
         this.transactionFragment = new TransactionFragment();
+        this.transactionFragment.setArguments(b);
         return this.transactionFragment;
     }
 }
