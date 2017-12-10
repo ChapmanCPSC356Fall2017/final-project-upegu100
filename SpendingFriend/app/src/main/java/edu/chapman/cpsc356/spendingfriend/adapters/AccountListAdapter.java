@@ -41,6 +41,7 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
 
     public class AccountViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        private AccountModel account;
         private TextView accountNameTextView;
         private TextView accountBalanceTextView;
 
@@ -55,6 +56,7 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
 
         public void setUp(AccountModel account)
         {
+            this.account = account;
             this.accountNameTextView.setText(account.getName());
             this.accountBalanceTextView.setText(Double.toString(account.getStartingBalance()));
         }
@@ -63,6 +65,7 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
         public void onClick(View view)
         {
             Intent accountIntent = new Intent(view.getContext(), AccountActivity.class);
+            accountIntent.putExtra(AccountActivity.EXTRA_ACCOUNT_NUMBER, this.account.getNumber());
             view.getContext().startActivity(accountIntent);
         }
     }
