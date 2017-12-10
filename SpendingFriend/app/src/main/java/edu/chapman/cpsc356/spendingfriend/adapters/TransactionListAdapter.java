@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import edu.chapman.cpsc356.spendingfriend.R;
 import edu.chapman.cpsc356.spendingfriend.activities.TransactionActivity;
@@ -42,15 +43,18 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
 
     public class TransactionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        private TextView transactionAmountTextView;
+
         public TransactionViewHolder(View itemView)
         {
             super(itemView);
             itemView.setOnClickListener(this);
+            this.transactionAmountTextView = itemView.findViewById(R.id.tv_transaction_amount);
         }
 
         public void setUp(TransactionModel transaction)
         {
-
+            this.transactionAmountTextView.setText(Double.toString(transaction.getAmount()));
         }
 
         @Override

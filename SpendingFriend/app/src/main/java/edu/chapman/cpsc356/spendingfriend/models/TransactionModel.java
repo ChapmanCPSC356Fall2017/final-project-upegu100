@@ -49,5 +49,5 @@ public class TransactionModel
     public void setId(String id) {this.id = id;}
     public void setDeposit(boolean isDeposit) {this.isDeposit = isDeposit;}
     public void setWithdrawl(boolean isWithdrawl) {this.isDeposit = !isWithdrawl;}
-    
+
 }

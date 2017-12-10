@@ -2,6 +2,7 @@ package edu.chapman.cpsc356.spendingfriend.collections;
 
 import java.util.ArrayList;
 
+import edu.chapman.cpsc356.spendingfriend.models.AccountModel;
 import edu.chapman.cpsc356.spendingfriend.models.TransactionModel;
 
 /**
@@ -29,16 +30,17 @@ public class TransactionCollection
     public TransactionCollection()
     {
         this.transactions = new ArrayList<TransactionModel>();
+        generateFakeData();
     }
 
     //Member Methods
     public ArrayList<TransactionModel> getTransactions() {return this.transactions;}
 
-    public TransactionModel getTransaction(int id)
+    public TransactionModel getTransaction(String id)
     {
         for (TransactionModel transaction : transactions)
         {
-            if (transaction.getId() == id)
+            if (transaction.getId().equals(id))
             {
                 return transaction;
             }
@@ -46,5 +48,8 @@ public class TransactionCollection
         return null;
     }
 
-
+    private void generateFakeData()
+    {
+        transactions.add(new TransactionModel(new AccountModel("Cash", 2000), 20, true));
+    }
 }
