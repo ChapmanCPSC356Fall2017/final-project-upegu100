@@ -1,12 +1,81 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<ScrollView
     android:layout_height="match_parent"
-    tools:context="edu.chapman.cpsc356.spendingfriend.fragments.TransactionFragment">
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="fragment transaction"/>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="edu.chapman.cpsc356.spendingfriend.fragments.TransactionFragment">
 
-</FrameLayout>
+        <EditText
+            android:id="@+id/et_transaction_name"
+            android:gravity="center"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textSize="25sp"
+            android:hint="@string/transaction_name"
+            tools:text="@string/transaction_name"/>
+
+        <EditText
+            android:id="@+id/et_transaction_amount"
+            android:layout_below="@+id/et_transaction_name"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp"
+            android:hint="@string/transaction_amount"
+            tools:text="@string/transaction_amount"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:id="@+id/rg_transaction_type"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/et_transaction_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/rb_deposit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/deposit"
+                android:textSize="20sp"/>
+            <RadioButton
+                android:id="@+id/rb_withdrawl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/withdrawal"
+                android:textSize="20sp"/>
+        </RadioGroup>
+
+        <DatePicker
+            android:id="@+id/dp_transaction_date"
+            android:layout_below="@+id/et_transaction_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-20dp"
+            android:scaleX=".65"
+            android:scaleY=".65">
+        </DatePicker>
+        
+        <EditText
+            android:id="@+id/et_trans_account"
+            android:gravity="center"
+            android:layout_below="@+id/dp_transaction_date"
+            android:layout_marginTop="-75dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:hint="@string/account"
+            tools:text="@string/account"
+            android:textSize="20sp"/>
+
+    </RelativeLayout>
+</ScrollView>

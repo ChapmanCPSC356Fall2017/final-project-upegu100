@@ -13,4 +13,10 @@
     <string name="checking">Checking</string>
     <string name="savings">Savings</string>
     <string name="account_name">Account Name</string>
+    <string name="transaction_amount">Transaction Amount</string>
+    <string name="deposit">Deposit</string>
+    <string name="withdrawal">Withdrawal</string>
+    <string name="cash">Cash</string>
+    <string name="account">Account</string>
+    <string name="transaction_name">Transaction Name</string>
 </resources>

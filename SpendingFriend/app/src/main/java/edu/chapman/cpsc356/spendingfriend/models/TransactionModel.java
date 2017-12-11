@@ -13,6 +13,7 @@ public class TransactionModel
     private AccountModel account;
     private String id;
     private boolean isDeposit;
+    private String name;
 
     //Constructors
     public TransactionModel()
@@ -37,7 +38,7 @@ public class TransactionModel
     }
     public String getId() { return id; }
     public boolean isDeposit() { return this.isDeposit; }
-    public boolean isWithdrawl() {return !this.isDeposit;}
+    public boolean isWithdrawal() {return !this.isDeposit;}
 
     //Setters
     public void setAmount(double amount) {
@@ -48,6 +49,6 @@ public class TransactionModel
     }
     public void setId(String id) {this.id = id;}
     public void setDeposit(boolean isDeposit) {this.isDeposit = isDeposit;}
-    public void setWithdrawl(boolean isWithdrawl) {this.isDeposit = !isWithdrawl;}
+    public void setWithdrawal(boolean isWithdrawal) {this.isDeposit = !isWithdrawal;}
 
 }
