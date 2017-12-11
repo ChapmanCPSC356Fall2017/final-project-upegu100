@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import edu.chapman.cpsc356.spendingfriend.R;
+import edu.chapman.cpsc356.spendingfriend.TransactionTouchHelper;
 import edu.chapman.cpsc356.spendingfriend.adapters.TransactionListAdapter;
 
 public class TransactionListFragment extends Fragment
@@ -27,6 +29,10 @@ public class TransactionListFragment extends Fragment
         transactionListView.setAdapter(this.transactionListAdapter);
 
         transactionListView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        ItemTouchHelper.Callback callback = new TransactionTouchHelper(this.transactionListAdapter);
+        ItemTouchHelper helper = new ItemTouchHelper(callback);
+        helper.attachToRecyclerView(transactionListView);
 
         return v;
     }
