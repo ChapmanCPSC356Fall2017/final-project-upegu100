@@ -12,7 +12,7 @@ public class AccountCollection
 {
     //Static Variables and Methods
     private static AccountCollection accountCollection;
-    private static AccountModel cashAccount = new AccountModel("Cash",0);
+    private static AccountModel CASH_ACCOUNT = new AccountModel("Cash",0);
 
     public static AccountCollection GetInstance()
     {
@@ -23,7 +23,7 @@ public class AccountCollection
         return accountCollection;
     }
 
-    public static AccountModel getCashAccount() { return cashAccount; }
+    public static AccountModel GetCashAccount() { return CASH_ACCOUNT; }
 
     //Member Variables
     private ArrayList<AccountModel> accounts;
@@ -32,7 +32,7 @@ public class AccountCollection
     public AccountCollection()
     {
         this.accounts = new ArrayList<AccountModel>();
-        this.accounts.add(AccountCollection.cashAccount);
+        this.accounts.add(AccountCollection.CASH_ACCOUNT);
 
         generateFakeData();
     }

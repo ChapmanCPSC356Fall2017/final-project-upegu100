@@ -25,7 +25,7 @@ public class TransactionModel
     {
         this.id = UUID.randomUUID().toString();
         this.amount = 0;
-        this.account = AccountCollection.getCashAccount();
+        this.account = AccountCollection.GetCashAccount();
         this.isDeposit = true;
         this.name = "New Transaction";
         this.date = DateTime.now();
@@ -37,7 +37,7 @@ public class TransactionModel
         this.name = name;
         this.amount = amount;
         this.isDeposit = isDeposit;
-        this.account = AccountCollection.getCashAccount();
+        this.account = AccountCollection.GetCashAccount();
         this.date = DateTime.now();
     }
 
