@@ -41,6 +41,12 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
         return TransactionCollection.GetInstance().getTransactions().size();
     }
 
+    public void remove(int adapterPosition)
+    {
+        TransactionCollection.GetInstance().getTransactions().remove(adapterPosition);
+        notifyItemRemoved(adapterPosition);
+    }
+
     public class TransactionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TransactionModel transaction;
