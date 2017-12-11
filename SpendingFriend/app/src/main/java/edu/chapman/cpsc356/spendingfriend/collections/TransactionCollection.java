@@ -50,6 +50,7 @@ public class TransactionCollection
 
     private void generateFakeData()
     {
-        transactions.add(new TransactionModel(new AccountModel("Cash", 2000), 20, true));
+        transactions.add(new TransactionModel("Groceries", 20, false));
+        transactions.add(new TransactionModel("Tutoring", 40, true));
     }
 }
