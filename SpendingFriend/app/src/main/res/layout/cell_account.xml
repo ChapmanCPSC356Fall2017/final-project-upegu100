@@ -26,6 +26,6 @@
         android:layout_centerVertical="true"
         android:ellipsize="end"
         android:maxLines="1"
-        tools:text="@string/account_number"/>
+        tools:text="@string/account_balance"/>
 
 </RelativeLayout>

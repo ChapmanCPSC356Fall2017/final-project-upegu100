@@ -58,7 +58,7 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
         {
             this.account = account;
             this.accountNameTextView.setText(account.getName());
-            this.accountBalanceTextView.setText(Double.toString(account.getStartingBalance()));
+            this.accountBalanceTextView.setText("$" + Double.toString(account.getStartingBalance()));
         }
 
         @Override
