@@ -13,22 +13,26 @@
 
         <EditText
             android:id="@+id/et_frag_account_name"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:textSize="30sp"
             android:layout_marginBottom="10dp"
-            tools:text="Account Name" />
+            android:hint="@string/account_name"
+            tools:text="@string/account_name"
+            android:gravity="center"/>
 
         <EditText
             android:id="@+id/et_account_number"
             android:layout_below="@+id/et_frag_account_name"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:textSize="20sp"
-            android:layout_marginBottom="10dp"
-            tools:text="Account Number"/>
+            android:layout_marginBottom="50dp"
+            android:hint="@string/account_number"
+            tools:text="@string/account_number"
+            android:gravity="center"/>
 
         <LinearLayout
             android:id="@+id/ll_starting_balance"
@@ -61,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_below="@+id/ll_starting_balance"
             android:gravity="center"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="50dp"
             android:layout_height="wrap_content">
 
             <TextView
@@ -72,7 +76,7 @@
                 android:textSize="20sp"
                 android:text="Current Balance" />
 
-            <EditText
+            <TextView
                 android:id="@+id/et_account_current_balance"
                 android:gravity="center"
                 android:layout_width="230dp"

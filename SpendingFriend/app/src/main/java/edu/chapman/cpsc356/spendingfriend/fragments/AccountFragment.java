@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import edu.chapman.cpsc356.spendingfriend.R;
 import edu.chapman.cpsc356.spendingfriend.activities.AccountActivity;
@@ -22,7 +23,7 @@ public class AccountFragment extends Fragment
     private EditText accountNameEditText;
     private EditText accountNumberEditText;
     private EditText accountStartingBalanceEditText;
-    private EditText accountCurrentBalanceEditText;
+    private TextView accountCurrentBalanceTextView;
     private RadioButton checkingRadioButton;
     private RadioButton savingsRadioButton;
 
@@ -45,7 +46,7 @@ public class AccountFragment extends Fragment
         this.accountNameEditText = v.findViewById(R.id.et_frag_account_name);
         this.accountNumberEditText = v.findViewById(R.id.et_account_number);
         this.accountStartingBalanceEditText = v.findViewById(R.id.et_account_starting_balance);
-        this.accountCurrentBalanceEditText = v.findViewById(R.id.et_account_current_balance);
+        this.accountCurrentBalanceTextView = v.findViewById(R.id.et_account_current_balance);
         this.checkingRadioButton = v.findViewById(R.id.rb_checking);
         this.savingsRadioButton = v.findViewById(R.id.rb_savings);
 
@@ -100,7 +101,7 @@ public class AccountFragment extends Fragment
             }
         });
 
-        this.accountCurrentBalanceEditText.addTextChangedListener(new TextWatcher() {
+        this.accountCurrentBalanceTextView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
