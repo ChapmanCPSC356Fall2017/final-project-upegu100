@@ -7,7 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
-        android:id="@+id/tv_account_name"
+        android:id="@+id/tv_cell_account_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="25sp"
@@ -18,7 +18,7 @@
         tools:text="@string/account_name"/>
 
     <TextView
-        android:id="@+id/tv_account_balance"
+        android:id="@+id/tv_cell_account_balance"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:textSize="20sp"

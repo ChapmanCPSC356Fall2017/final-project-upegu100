@@ -11,4 +11,6 @@
     <string name="account_number">Account Number</string>
     <string name="account_balance">Account Balance</string>
     <string name="dollar_symbol">$</string>
+    <string name="checking">Checking</string>
+    <string name="savings">Savings</string>
 </resources>

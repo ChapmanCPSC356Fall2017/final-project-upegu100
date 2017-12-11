@@ -50,8 +50,8 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
             super(itemView);
 
             itemView.setOnClickListener(this);
-            this.accountNameTextView = itemView.findViewById(R.id.tv_account_name);
-            this.accountBalanceTextView = itemView.findViewById(R.id.tv_account_balance);
+            this.accountNameTextView = itemView.findViewById(R.id.tv_cell_account_name);
+            this.accountBalanceTextView = itemView.findViewById(R.id.tv_cell_account_balance);
         }
 
         public void setUp(AccountModel account)

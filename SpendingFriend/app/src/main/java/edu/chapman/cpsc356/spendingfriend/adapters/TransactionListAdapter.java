@@ -56,7 +56,7 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
         {
             super(itemView);
             itemView.setOnClickListener(this);
-            this.transactionAmountTextView = itemView.findViewById(R.id.tv_transaction_amount);
+            this.transactionAmountTextView = itemView.findViewById(R.id.tv_cell_transaction_amount);
         }
 
         public void setUp(TransactionModel transaction)
