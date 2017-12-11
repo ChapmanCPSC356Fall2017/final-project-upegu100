@@ -65,7 +65,7 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
         public void onClick(View view)
         {
             Intent accountIntent = new Intent(view.getContext(), AccountActivity.class);
-            accountIntent.putExtra(AccountActivity.EXTRA_ACCOUNT_NUMBER, this.account.getNumber());
+            accountIntent.putExtra(AccountActivity.EXTRA_ACCOUNT_ID, this.account.getId());
             view.getContext().startActivity(accountIntent);
         }
     }

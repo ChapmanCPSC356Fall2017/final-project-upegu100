@@ -1,5 +1,8 @@
 package edu.chapman.cpsc356.spendingfriend.models;
 
+import java.util.Random;
+import java.util.UUID;
+
 /**
  * Created by Nadiya on 12/3/2017.
  */
@@ -12,6 +15,7 @@ public class AccountModel
     public static int CASH = 2;
 
     //Member Variables
+    private String id;
     private String name;
     private int number;
     private int type;
@@ -20,15 +24,17 @@ public class AccountModel
 
 
     //Constructors
-    public AccountModel(){}
+    public AccountModel(){ this.id = UUID.randomUUID().toString(); }
 
     public AccountModel(String name, double startingBalance)
     {
+        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.startingBalance = startingBalance;
     }
 
     //Getters
+    public String getId() { return this.id; }
     public String getName() {
         return this.name;
     }

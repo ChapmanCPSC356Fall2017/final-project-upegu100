@@ -1,7 +1,5 @@
 package edu.chapman.cpsc356.spendingfriend.fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.annotation.Nullable;
@@ -23,8 +21,8 @@ public class AccountFragment extends Fragment
     {
         View v = inflater.inflate(R.layout.fragment_account, container, false);
 
-        int accountNumber = getArguments().getInt(AccountActivity.EXTRA_ACCOUNT_NUMBER);
-        this.account = AccountCollection.GetInstance().getAccount(accountNumber);
+        String accountId = getArguments().getString(AccountActivity.EXTRA_ACCOUNT_ID);
+        this.account = AccountCollection.GetInstance().getAccount(accountId);
 
         return v;
     }

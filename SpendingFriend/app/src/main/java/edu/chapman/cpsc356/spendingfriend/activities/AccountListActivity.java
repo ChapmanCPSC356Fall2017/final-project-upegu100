@@ -1,14 +1,12 @@
 package edu.chapman.cpsc356.spendingfriend.activities;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import edu.chapman.cpsc356.spendingfriend.R;
 import edu.chapman.cpsc356.spendingfriend.collections.AccountCollection;
-import edu.chapman.cpsc356.spendingfriend.fragments.AccountFragment;
 import edu.chapman.cpsc356.spendingfriend.fragments.AccountListFragment;
 import edu.chapman.cpsc356.spendingfriend.models.AccountModel;
 
@@ -41,7 +39,7 @@ public class AccountListActivity extends SingleFragmentActivity {
                 AccountCollection.GetInstance().getAccounts().add(0, newAccount);
 
                 Intent intent = new Intent(this, AccountActivity.class);
-                intent.putExtra(AccountActivity.EXTRA_ACCOUNT_NUMBER, newAccount.getNumber());
+                intent.putExtra(AccountActivity.EXTRA_ACCOUNT_ID, newAccount.getId());
                 startActivity(intent);
 
                 return true;

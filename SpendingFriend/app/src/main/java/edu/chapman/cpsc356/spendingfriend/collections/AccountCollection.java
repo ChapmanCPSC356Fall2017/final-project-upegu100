@@ -35,11 +35,11 @@ public class AccountCollection
     //Member Methods
     public ArrayList<AccountModel> getAccounts(){return this.accounts;}
 
-    public AccountModel getAccount(int number)
+    public AccountModel getAccount(String id)
     {
         for (AccountModel account : accounts)
         {
-            if (account.getNumber() == number)
+            if (account.getId().equals(id))
             {
                 return account;
             }
