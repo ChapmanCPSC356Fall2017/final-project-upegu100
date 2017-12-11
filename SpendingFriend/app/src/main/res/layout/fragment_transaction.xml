@@ -63,7 +63,7 @@
             android:scaleX=".65"
             android:scaleY=".65">
         </DatePicker>
-        
+
         <EditText
             android:id="@+id/et_trans_account"
             android:gravity="center"
