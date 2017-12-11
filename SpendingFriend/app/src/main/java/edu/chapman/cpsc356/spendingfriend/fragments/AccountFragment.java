@@ -16,6 +16,8 @@ public class AccountFragment extends Fragment
 {
     AccountModel account;
 
+    public AccountModel getAccount() { return this.account; }
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState)
     {
