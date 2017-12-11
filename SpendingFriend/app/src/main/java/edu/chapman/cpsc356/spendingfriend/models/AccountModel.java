@@ -3,6 +3,8 @@ package edu.chapman.cpsc356.spendingfriend.models;
 import java.util.Random;
 import java.util.UUID;
 
+import edu.chapman.cpsc356.spendingfriend.R;
+
 /**
  * Created by Nadiya on 12/3/2017.
  */
@@ -24,13 +26,24 @@ public class AccountModel
 
 
     //Constructors
-    public AccountModel(){ this.id = UUID.randomUUID().toString(); }
+    public AccountModel()
+    {
+        this.id = UUID.randomUUID().toString();
+        this.name = "New Account";
+        this.number = 0;
+        this.type = AccountModel.CHECKING;
+        this.startingBalance = 0;
+        this.currentBalance = 0;
+    }
 
     public AccountModel(String name, double startingBalance)
     {
         this.id = UUID.randomUUID().toString();
         this.name = name;
+        this.number = 0;
+        this.type = AccountModel.CHECKING;
         this.startingBalance = startingBalance;
+        this.currentBalance = startingBalance;
     }
 
     //Getters

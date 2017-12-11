@@ -43,7 +43,7 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
 
         private AccountModel account;
         private TextView accountNameTextView;
-        private TextView accountBalanceTextView;
+        private TextView accountCurrentBalanceTextView;
 
         public AccountViewHolder(View itemView)
         {
@@ -51,14 +51,14 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
 
             itemView.setOnClickListener(this);
             this.accountNameTextView = itemView.findViewById(R.id.tv_cell_account_name);
-            this.accountBalanceTextView = itemView.findViewById(R.id.tv_cell_account_balance);
+            this.accountCurrentBalanceTextView = itemView.findViewById(R.id.tv_cell_account_balance);
         }
 
         public void setUp(AccountModel account)
         {
             this.account = account;
             this.accountNameTextView.setText(account.getName());
-            this.accountBalanceTextView.setText("$" + Double.toString(account.getStartingBalance()));
+            this.accountCurrentBalanceTextView.setText("$" + Double.toString(account.getCurrentBalance()));
         }
 
         @Override
