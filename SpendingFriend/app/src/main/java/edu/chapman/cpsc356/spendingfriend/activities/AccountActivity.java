@@ -39,12 +39,19 @@ public class AccountActivity extends SingleFragmentActivity
         switch (item.getItemId())
         {
             case R.id.menu_delete_account:
-                AccountCollection.GetInstance().getAccounts().remove(accountFragment.getAccount());
+                if (this.accountFragment.getAccount().hasTransaction())
+                {
+                    writeCannotDeleteErrorMessage();
+                    return true;
+                }
+                else
+                {
+                    AccountCollection.GetInstance().getAccounts().remove(accountFragment.getAccount());
 
-                Intent intent = new Intent(this, AccountListActivity.class);
-                startActivity(intent);
-                return true;
-
+                    Intent intent = new Intent(this, AccountListActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
             case android.R.id.home:
                 if (!this.accountFragment.isValidAccountName())
                 {
@@ -66,5 +73,11 @@ public class AccountActivity extends SingleFragmentActivity
     {
         Toast.makeText(this, "Whoops! Your account name already exists or it is invalid. " +
                 "Please try a new name.", Toast.LENGTH_SHORT).show();
+    }
+
+    public void writeCannotDeleteErrorMessage()
+    {
+        Toast.makeText(this, "Uh oh! It looks like you have transactions under this account " +
+                "and therefore cannot be deleted.", Toast.LENGTH_SHORT).show();
     }
 }

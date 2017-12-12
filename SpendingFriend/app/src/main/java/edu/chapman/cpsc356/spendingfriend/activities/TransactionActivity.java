@@ -34,8 +34,7 @@ public class TransactionActivity extends SingleFragmentActivity
                     writeAccountErrorMessage();
                     return true;
                 }
-                else
-                {
+                else {
                     return false;
                 }
 

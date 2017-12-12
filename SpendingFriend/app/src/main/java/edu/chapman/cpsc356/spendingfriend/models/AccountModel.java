@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.UUID;
 
 import edu.chapman.cpsc356.spendingfriend.R;
+import edu.chapman.cpsc356.spendingfriend.collections.TransactionCollection;
 
 /**
  * Created by Nadiya on 12/3/2017.
@@ -74,4 +75,26 @@ public class AccountModel
     public void setAmount(double currentBalance) {
         this.currentBalance = currentBalance;
     }
+
+    public boolean equals(AccountModel account)
+    {
+        if (this.id == account.id)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean hasTransaction()
+    {
+        for (TransactionModel transaction : TransactionCollection.GetInstance().getTransactions())
+        {
+            if (transaction.getAccount().getId().equals(this.id))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
