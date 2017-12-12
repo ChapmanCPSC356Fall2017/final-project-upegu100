@@ -34,7 +34,13 @@ public class TransactionActivity extends SingleFragmentActivity
                     writeAccountErrorMessage();
                     return true;
                 }
-                else {
+                else if (this.transactionFragment.getTransaction().getDate().isAfterNow())
+                {
+                    writeInvalidDateErrorMessage();
+                    return true;
+                }
+                else
+                {
                     return false;
                 }
 
@@ -43,6 +49,13 @@ public class TransactionActivity extends SingleFragmentActivity
         }
     }
     //TODO: String Resources
+
+    public void writeInvalidDateErrorMessage()
+    {
+        Toast.makeText(this, "Yikes, you can see into the future! " +
+                "Your transaction date is later than today. Please keep us in the present " +
+                "and type a new one.", Toast.LENGTH_LONG).show();
+    }
     public void writeAccountErrorMessage()
     {
         Toast.makeText(this, "Uh oh! The account you typed does not exist.", Toast.LENGTH_SHORT).show();

@@ -39,6 +39,8 @@ public class TransactionFragment extends Fragment {
     private DatePicker transactionDatePicker;
     private EditText accountEditText;
 
+    public TransactionModel getTransaction() {return this.transaction;}
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
