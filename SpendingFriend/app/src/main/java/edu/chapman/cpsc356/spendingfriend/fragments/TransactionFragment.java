@@ -16,6 +16,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
+import org.joda.time.DateTime;
+
 import edu.chapman.cpsc356.spendingfriend.MoneyFormat;
 import edu.chapman.cpsc356.spendingfriend.ParseHelper;
 import edu.chapman.cpsc356.spendingfriend.R;
@@ -64,8 +66,19 @@ public class TransactionFragment extends Fragment {
 
         }
 
-        //this.transactionDatePicker = v.findViewById(R.id.dp_transaction_date);
-        //TODO: Figure out how to get it to display the correct date
+        this.transactionDatePicker = v.findViewById(R.id.dp_transaction_date);
+        DatePicker.OnDateChangedListener onDateChangedListener = new DatePicker.OnDateChangedListener()
+        {
+            @Override
+            public void onDateChanged(DatePicker datePicker, int i, int i1, int i2)
+            {
+                DateTime date = new DateTime(i, i1+1, i2, 0, 0);
+                transaction.setDate(date);
+            }
+        };
+        this.transactionDatePicker.init(transaction.getDate().getYear(),
+                transaction.getDate().getMonthOfYear() -1, transaction.getDate().getDayOfMonth(),
+                onDateChangedListener);
 
         this.accountEditText = v.findViewById(R.id.et_trans_account);
         this.accountEditText.setText(transaction.getAccount().getName());
@@ -108,7 +121,7 @@ public class TransactionFragment extends Fragment {
                     transaction.setAmount(Double.parseDouble(correctStringFormat));
                     editable.replace(0, editable.length(), correctStringFormat);
                 }*/
-                
+
                 if (editable.toString().indexOf('.') > -1 && editable.toString().indexOf('.') == editable.length() - 4) //Not a valid price format
                 {
                     editable.replace(0, editable.length(), editable.subSequence(0,editable.length()-1));
@@ -141,18 +154,6 @@ public class TransactionFragment extends Fragment {
                 transaction.setDeposit(false);
             }
         });
-
-        //TODO: Finish this date stuff lol
-        /* this.transactionDatePicker.setOnDateChangedListener(new DatePicker.OnDateChangedListener()
-        {
-            @Override
-            public void onDateChanged(DatePicker datePicker, int i, int i1, int i2)
-            {
-
-            }
-        })*/
-
-        //TODO: How to save new account (you can't do onTextChangedListeners for that
 
         return v;
     }
