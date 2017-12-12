@@ -43,7 +43,7 @@ public class TransactionActivity extends SingleFragmentActivity
                 return false;
         }
     }
-
+    //TODO: String Resources
     public void writeAccountErrorMessage()
     {
         Toast.makeText(this, "Uh oh! The account you typed does not exist.", Toast.LENGTH_SHORT).show();

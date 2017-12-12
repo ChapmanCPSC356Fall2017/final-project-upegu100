@@ -144,4 +144,15 @@ public class AccountFragment extends Fragment
 
         return v;
     }
+
+    //TODO: White Space in Titles?
+    public boolean isValidAccountName()
+    {
+        if (AccountCollection.isUniqueAccountName(account.getName(), account.getId()) && !account.getName().equals(""))
+        {
+            return true;
+        }
+
+        return false;
+    }
 }

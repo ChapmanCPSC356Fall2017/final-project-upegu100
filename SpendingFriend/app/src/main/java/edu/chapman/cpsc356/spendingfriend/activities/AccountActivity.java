@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import edu.chapman.cpsc356.spendingfriend.R;
 import edu.chapman.cpsc356.spendingfriend.collections.AccountCollection;
@@ -44,8 +45,26 @@ public class AccountActivity extends SingleFragmentActivity
                 startActivity(intent);
                 return true;
 
+            case android.R.id.home:
+                if (!this.accountFragment.isValidAccountName())
+                {
+                    writeInvalidNameErrorMessage();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+
             default:
                 return false;
         }
+    }
+
+    public void writeInvalidNameErrorMessage()
+    {
+        Toast.makeText(this, "Whoops! Your account name already exists or it is invalid. " +
+                "Please try a new name.", Toast.LENGTH_SHORT).show();
     }
 }

@@ -37,11 +37,11 @@ public class AccountCollection
         generateFakeData();
     }
 
-    public static boolean isUniqueAccountName(String name)
+    public static boolean isUniqueAccountName(String name, String id)
     {
         for (AccountModel account : accountCollection.getAccounts())
         {
-            if (account.getName().equals(name))
+            if (account.getName().equals(name) && !account.getId().equals(id))
             {
                 return false;
             }
