@@ -2,9 +2,13 @@ package edu.chapman.cpsc356.spendingfriend.fragments;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +18,9 @@ import android.widget.RadioButton;
 
 import edu.chapman.cpsc356.spendingfriend.R;
 import edu.chapman.cpsc356.spendingfriend.activities.TransactionActivity;
+import edu.chapman.cpsc356.spendingfriend.collections.AccountCollection;
 import edu.chapman.cpsc356.spendingfriend.collections.TransactionCollection;
+import edu.chapman.cpsc356.spendingfriend.models.AccountModel;
 import edu.chapman.cpsc356.spendingfriend.models.TransactionModel;
 
 
@@ -29,11 +35,12 @@ public class TransactionFragment extends Fragment {
     private DatePicker transactionDatePicker;
     private EditText accountEditText;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View v = inflater.inflate(R.layout.fragment_transaction, container, false);
-        String transactionId = getArguments().getString(TransactionActivity.EXTRA_TRANSACTION_ID);
+        final String transactionId = getArguments().getString(TransactionActivity.EXTRA_TRANSACTION_ID);
         this.transaction = TransactionCollection.GetInstance().getTransaction(transactionId);
 
         this.transactionNameEditText = v.findViewById(R.id.et_transaction_name);
@@ -51,16 +58,94 @@ public class TransactionFragment extends Fragment {
         }
         else
         {
-            this.depositRadioButton.setChecked(false);
+            this.withdrawalRadioButton.setChecked(true);
 
         }
 
-        this.transactionDatePicker = v.findViewById(R.id.dp_transaction_date);
+        //this.transactionDatePicker = v.findViewById(R.id.dp_transaction_date);
         //TODO: Figure out how to get it to display the correct date
 
         this.accountEditText = v.findViewById(R.id.et_trans_account);
         this.accountEditText.setText(transaction.getAccount().getName());
 
+        this.transactionNameEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable)
+            {
+                transaction.setName(editable.toString());
+            }
+        });
+
+        this.transactionAmountEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable)
+            {
+                transaction.setAmount(Double.parseDouble(editable.toString()));
+            }
+        });
+
+        this.depositRadioButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                transaction.setDeposit(true);
+            }
+        });
+
+        this.withdrawalRadioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                transaction.setDeposit(false);
+            }
+        });
+
+        //TODO: Finish this date stuff lol
+        /* this.transactionDatePicker.setOnDateChangedListener(new DatePicker.OnDateChangedListener()
+        {
+            @Override
+            public void onDateChanged(DatePicker datePicker, int i, int i1, int i2)
+            {
+
+            }
+        })*/
+
+        //TODO: How to save new account (you can't do onTextChangedListeners for that
+
         return v;
+    }
+
+    public boolean isValidAccountName()
+    {
+        String accountName = this.accountEditText.getText().toString();
+        AccountModel account = AccountCollection.GetInstance().getAccountByName(accountName);
+        if (account != null)
+        {
+            transaction.setAccount(account);
+            return true;
+        }
+
+        return false;
     }
 }

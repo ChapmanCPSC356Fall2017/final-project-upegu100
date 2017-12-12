@@ -1,8 +1,6 @@
 package edu.chapman.cpsc356.spendingfriend.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.IntegerRes;
 import android.support.v4.app.Fragment;
 import android.support.annotation.Nullable;
 import android.text.Editable;
@@ -38,7 +36,7 @@ public class AccountFragment extends Fragment
         super.onCreate(savedInstanceState);
 
         String accountId = getArguments().getString(AccountActivity.EXTRA_ACCOUNT_ID);
-        this.account = AccountCollection.GetInstance().getAccount(accountId);
+        this.account = AccountCollection.GetInstance().getAccountById(accountId);
     }
 
     @Override

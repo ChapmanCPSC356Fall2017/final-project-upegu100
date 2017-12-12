@@ -4,6 +4,7 @@ import org.joda.time.DateTime;
 
 import java.util.UUID;
 
+import edu.chapman.cpsc356.spendingfriend.R;
 import edu.chapman.cpsc356.spendingfriend.collections.AccountCollection;
 
 /**

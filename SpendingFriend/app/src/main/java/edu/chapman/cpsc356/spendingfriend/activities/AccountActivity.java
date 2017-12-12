@@ -15,6 +15,7 @@ public class AccountActivity extends SingleFragmentActivity
     public static final String EXTRA_ACCOUNT_ID = "extra_account_id";
     AccountFragment accountFragment;
     @Override
+
     protected AccountFragment getFragment()
     {
         Bundle b = getIntent().getExtras();

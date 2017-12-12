@@ -37,14 +37,40 @@ public class AccountCollection
         generateFakeData();
     }
 
+    public static boolean isUniqueAccountName(String name)
+    {
+        for (AccountModel account : accountCollection.getAccounts())
+        {
+            if (account.getName().equals(name))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     //Member Methods
     public ArrayList<AccountModel> getAccounts(){return this.accounts;}
 
-    public AccountModel getAccount(String id)
+    public AccountModel getAccountById(String id)
     {
         for (AccountModel account : accounts)
         {
             if (account.getId().equals(id))
+            {
+                return account;
+            }
+        }
+
+        return null;
+    }
+
+    public AccountModel getAccountByName(String name)
+    {
+        for(AccountModel account : accounts)
+        {
+            if (account.getName().equals(name))
             {
                 return account;
             }
