@@ -32,7 +32,8 @@
             android:layout_marginBottom="50dp"
             android:hint="@string/account_number"
             tools:text="@string/account_number"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:inputType="number"/>
 
         <LinearLayout
             android:id="@+id/ll_starting_balance"
@@ -56,7 +57,8 @@
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                tools:text="1000"/>
+                tools:text="1000"
+                android:inputType="numberDecimal"/>
 
         </LinearLayout>
 

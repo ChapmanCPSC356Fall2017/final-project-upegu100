@@ -30,7 +30,8 @@
             android:layout_marginBottom="10dp"
             android:hint="@string/transaction_amount"
             tools:text="@string/transaction_amount"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:inputType="numberDecimal"/>
 
         <RadioGroup
             android:id="@+id/rg_transaction_type"

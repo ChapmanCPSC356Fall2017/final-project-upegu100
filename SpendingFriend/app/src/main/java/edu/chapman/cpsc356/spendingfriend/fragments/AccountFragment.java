@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import edu.chapman.cpsc356.spendingfriend.ParseHelper;
 import edu.chapman.cpsc356.spendingfriend.R;
 import edu.chapman.cpsc356.spendingfriend.activities.AccountActivity;
 import edu.chapman.cpsc356.spendingfriend.collections.AccountCollection;
@@ -100,8 +101,14 @@ public class AccountFragment extends Fragment
             @Override
             public void afterTextChanged(Editable editable)
             {
-                //TODO: Error Handling
-                account.setNumber(Integer.parseInt(editable.toString()));
+                if (ParseHelper.tryParseInt(editable.toString()))
+                {
+                    account.setNumber(Integer.parseInt(editable.toString()));
+                }
+                else
+                {
+                    account.setNumber(0);
+                }
             }
         });
 
@@ -120,8 +127,20 @@ public class AccountFragment extends Fragment
             @Override
             public void afterTextChanged(Editable editable)
             {
-                //TODO: Error handling for money amounts and control what they type
-                account.setStartingBalance(Double.parseDouble(editable.toString()));
+
+                if (editable.toString().indexOf('.') != -1 && editable.toString().indexOf('.') == editable.length() - 4) //Not a valid price format
+                {
+                    editable.replace(0, editable.length(), editable.subSequence(0,editable.length()-1));
+                    account.setStartingBalance(Double.parseDouble(editable.toString()));
+                }
+                else if (ParseHelper.tryParseDouble(editable.toString()))
+                {
+                    account.setStartingBalance(Double.parseDouble(editable.toString()));
+                }
+                else
+                {
+                    account.setStartingBalance(0);
+                }
             }
         });
 

@@ -16,6 +16,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
+import edu.chapman.cpsc356.spendingfriend.MoneyFormat;
+import edu.chapman.cpsc356.spendingfriend.ParseHelper;
 import edu.chapman.cpsc356.spendingfriend.R;
 import edu.chapman.cpsc356.spendingfriend.activities.TransactionActivity;
 import edu.chapman.cpsc356.spendingfriend.collections.AccountCollection;
@@ -100,7 +102,26 @@ public class TransactionFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable)
             {
-                transaction.setAmount(Double.parseDouble(editable.toString()));
+                /*if (editable.toString().length() < Double.toString(transaction.getAmount()).length())
+                {
+                    String correctStringFormat = MoneyFormat.moveDecimalLeft(editable.toString());
+                    transaction.setAmount(Double.parseDouble(correctStringFormat));
+                    editable.replace(0, editable.length(), correctStringFormat);
+                }*/
+                
+                if (editable.toString().indexOf('.') > -1 && editable.toString().indexOf('.') == editable.length() - 4) //Not a valid price format
+                {
+                    editable.replace(0, editable.length(), editable.subSequence(0,editable.length()-1));
+                    transaction.setAmount(Double.parseDouble(editable.toString()));
+                }
+                else if (ParseHelper.tryParseDouble(editable.toString()))
+                {
+                    transaction.setAmount(Double.parseDouble(editable.toString()));
+                }
+                else
+                {
+                    transaction.setAmount(0);
+                }
             }
         });
 
