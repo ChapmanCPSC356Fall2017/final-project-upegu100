@@ -20,7 +20,8 @@ public class TransactionListFragment extends Fragment
     private TransactionListAdapter transactionListAdapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
 
         View v = inflater.inflate(R.layout.fragment_transaction_list, container, false);
         RecyclerView transactionListView = v.findViewById(R.id.rv_transactions);

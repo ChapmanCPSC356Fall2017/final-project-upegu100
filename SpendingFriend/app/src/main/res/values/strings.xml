@@ -26,4 +26,9 @@
     <string name="total_savings_goal">Total Savings Goal</string>
     <string name="budget_name">Budget Name</string>
     <string name="summary_header">Summary Header</string>
+    <string name="account_summaries">Account Summaries</string>
+    <string name="spent">Spent</string>
+    <string name="earned">Earned</string>
+    <string name="your_monthly_cap">Your Monthly Spending Cap</string>
+    <string name="your_monthly_income_goal">Your Monthly Income Goal</string>
 </resources>
