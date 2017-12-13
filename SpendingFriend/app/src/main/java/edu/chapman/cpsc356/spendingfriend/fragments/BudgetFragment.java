@@ -8,9 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import edu.chapman.cpsc356.spendingfriend.R;
+import edu.chapman.cpsc356.spendingfriend.models.AccountModel;
 
 public class BudgetFragment extends Fragment
 {
+    private AccountModel account;
+
     public BudgetFragment()
     {
         // Required empty public constructor

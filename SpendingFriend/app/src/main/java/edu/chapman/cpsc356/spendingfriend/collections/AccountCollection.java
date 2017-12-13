@@ -12,7 +12,9 @@ public class AccountCollection
 {
     //Static Variables and Methods
     private static AccountCollection accountCollection;
+    private static AccountCollection extendedAccountCollection;
     private static AccountModel CASH_ACCOUNT = new AccountModel("Cash",0);
+    private static AccountModel TOTAL_ACCOUNT = new AccountModel("Total", 0);
 
     public static AccountCollection GetInstance()
     {
@@ -23,16 +25,21 @@ public class AccountCollection
         return accountCollection;
     }
 
+    public static AccountModel GetTotalAccount() {return TOTAL_ACCOUNT;}
     public static AccountModel GetCashAccount() { return CASH_ACCOUNT; }
 
     //Member Variables
     private ArrayList<AccountModel> accounts;
+    private ArrayList<AccountModel> extendedAccounts;
 
     //Constructors
     public AccountCollection()
     {
         this.accounts = new ArrayList<AccountModel>();
-        this.accounts.add(AccountCollection.CASH_ACCOUNT);
+        this.extendedAccounts = new ArrayList<AccountModel>();
+
+        addAccount(AccountCollection.CASH_ACCOUNT);
+        this.extendedAccounts.add(AccountCollection.TOTAL_ACCOUNT);
 
         generateFakeData();
     }
@@ -52,6 +59,7 @@ public class AccountCollection
 
     //Member Methods
     public ArrayList<AccountModel> getAccounts(){return this.accounts;}
+    public ArrayList<AccountModel> getExtendedAccounts(){return this.extendedAccounts;}
 
     public AccountModel getAccountById(String id)
     {
@@ -77,6 +85,18 @@ public class AccountCollection
         }
 
         return null;
+    }
+
+    public void addAccount(AccountModel account)
+    {
+        accounts.add(account);
+        extendedAccounts.add(account);
+    }
+
+    public void removeAccount(AccountModel account)
+    {
+        accounts.remove(account);
+        extendedAccounts.remove(account);
     }
 
     private void generateFakeData()

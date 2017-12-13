@@ -46,7 +46,7 @@ public class AccountActivity extends SingleFragmentActivity
                 }
                 else
                 {
-                    AccountCollection.GetInstance().getAccounts().remove(accountFragment.getAccount());
+                    AccountCollection.GetInstance().removeAccount(accountFragment.getAccount());
 
                     Intent intent = new Intent(this, AccountListActivity.class);
                     startActivity(intent);

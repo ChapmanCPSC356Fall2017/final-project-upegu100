@@ -6,7 +6,8 @@ import android.os.Bundle;
 
 import edu.chapman.cpsc356.spendingfriend.fragments.BudgetFragment;
 
-public class BudgetActivity extends SingleFragmentActivity {
+public class BudgetActivity extends SingleFragmentActivity
+{
 
     private BudgetFragment budgetFragment;
     @Override

@@ -36,7 +36,7 @@ public class AccountListActivity extends SingleFragmentActivity {
         {
             case R.id.menu_add_account:
                 AccountModel newAccount = new AccountModel();
-                AccountCollection.GetInstance().getAccounts().add(0, newAccount);
+                AccountCollection.GetInstance().addAccount(newAccount);
 
                 Intent intent = new Intent(this, AccountActivity.class);
                 intent.putExtra(AccountActivity.EXTRA_ACCOUNT_ID, newAccount.getId());

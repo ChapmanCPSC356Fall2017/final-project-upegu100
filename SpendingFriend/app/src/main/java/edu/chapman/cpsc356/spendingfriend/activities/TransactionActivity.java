@@ -11,7 +11,7 @@ import edu.chapman.cpsc356.spendingfriend.fragments.TransactionFragment;
 
 public class TransactionActivity extends SingleFragmentActivity
 {
-    public static final String EXTRA_TRANSACTION_ID = "extra_transation_id";
+    public static final String EXTRA_TRANSACTION_ID = "extra_transaction_id";
     private TransactionFragment transactionFragment;
 
     @Override

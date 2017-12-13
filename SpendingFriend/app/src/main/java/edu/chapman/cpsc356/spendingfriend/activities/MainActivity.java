@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onBudgetClick(View view)
     {
-        Intent intent = new Intent(this, BudgetActivity.class);
+        Intent intent = new Intent(this, BudgetListActivity.class);
         startActivity(intent);
     }
 
