@@ -25,4 +25,5 @@
     <string name="monthly_income_goal">Monthly Income Goal</string>
     <string name="total_savings_goal">Total Savings Goal</string>
     <string name="budget_name">Budget Name</string>
+    <string name="summary_header">Summary Header</string>
 </resources>
