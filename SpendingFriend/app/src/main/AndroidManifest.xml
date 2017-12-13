@@ -16,7 +16,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activities.AccountActivity"
             android:parentActivityName=".activities.AccountListActivity" />
@@ -32,8 +31,10 @@
         <activity
             android:name=".activities.BudgetActivity"
             android:parentActivityName=".activities.MainActivity" />
-        <activity android:name=".activities.SummaryActivity"
-            android:parentActivityName=".activities.MainActivity"></activity>
+        <activity
+            android:name=".activities.SummaryActivity"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity android:name=".activities.BudgetListActivity"></activity>
     </application>
 
 </manifest>
