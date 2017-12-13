@@ -12,7 +12,7 @@ public class AccountCollection
 {
     //Static Variables and Methods
     private static AccountCollection accountCollection;
-    private static AccountCollection extendedAccountCollection;
+
     private static AccountModel CASH_ACCOUNT = new AccountModel("Cash",0);
     private static AccountModel TOTAL_ACCOUNT = new AccountModel("Total", 0);
 
@@ -89,8 +89,8 @@ public class AccountCollection
 
     public void addAccount(AccountModel account)
     {
-        accounts.add(account);
-        extendedAccounts.add(account);
+        accounts.add(0, account);
+        extendedAccounts.add(0, account);
     }
 
     public void removeAccount(AccountModel account)
@@ -101,6 +101,6 @@ public class AccountCollection
 
     private void generateFakeData()
     {
-        this.accounts.add(new AccountModel("BOA Checking", 2050));
+       // addAccount(new AccountModel("BOA Checking", 2050));
     }
 }
