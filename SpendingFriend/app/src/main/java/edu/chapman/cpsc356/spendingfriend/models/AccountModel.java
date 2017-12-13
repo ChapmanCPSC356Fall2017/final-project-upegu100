@@ -37,6 +37,9 @@ public class AccountModel
         this.startingBalance = 0;
         this.currentBalance = 0;
         this.numTransactions = 0;
+        this.monthlySpendingCap = 0;
+        this.monthlyIncomeGoal = 0;
+        this.totalSavingsGoal = 0;
     }
 
     public AccountModel(String name, double startingBalance)
@@ -48,6 +51,9 @@ public class AccountModel
         this.startingBalance = startingBalance;
         this.currentBalance = startingBalance;
         this.numTransactions = 0;
+        this.monthlySpendingCap = 0;
+        this.monthlyIncomeGoal = 0;
+        this.totalSavingsGoal = 0;
     }
 
     //Getters

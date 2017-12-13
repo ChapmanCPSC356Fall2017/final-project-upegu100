@@ -46,7 +46,7 @@ public class AccountCollection
 
     public static boolean isUniqueAccountName(String name, String id)
     {
-        for (AccountModel account : accountCollection.getAccounts())
+        for (AccountModel account : accountCollection.getExtendedAccounts())
         {
             if (account.getName().equals(name) && !account.getId().equals(id))
             {
@@ -63,7 +63,7 @@ public class AccountCollection
 
     public AccountModel getAccountById(String id)
     {
-        for (AccountModel account : accounts)
+        for (AccountModel account : extendedAccounts)
         {
             if (account.getId().equals(id))
             {
@@ -76,7 +76,7 @@ public class AccountCollection
 
     public AccountModel getAccountByName(String name)
     {
-        for(AccountModel account : accounts)
+        for(AccountModel account : extendedAccounts)
         {
             if (account.getName().equals(name))
             {

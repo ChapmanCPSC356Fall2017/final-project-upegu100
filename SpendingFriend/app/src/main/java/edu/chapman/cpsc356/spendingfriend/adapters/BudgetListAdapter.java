@@ -63,6 +63,7 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Bu
         public void onClick(View view)
         {
             Intent budgetIntent = new Intent(view.getContext(), BudgetActivity.class);
+            budgetIntent.putExtra(BudgetActivity.EXTRA_BUDGET_ACCOUNT_ID, this.account.getId());
             view.getContext().startActivity(budgetIntent);
         }
     }
