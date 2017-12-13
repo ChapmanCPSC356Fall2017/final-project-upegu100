@@ -5,12 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import edu.chapman.cpsc356.spendingfriend.R;
 import edu.chapman.cpsc356.spendingfriend.activities.TransactionActivity;
 import edu.chapman.cpsc356.spendingfriend.collections.TransactionCollection;
+import edu.chapman.cpsc356.spendingfriend.models.AccountModel;
 import edu.chapman.cpsc356.spendingfriend.models.TransactionModel;
 
 /**
@@ -44,8 +44,10 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
 
     public void remove(int adapterPosition)
     {
+        AccountModel account = TransactionCollection.GetInstance().getTransactions().get(adapterPosition).getAccount();
         TransactionCollection.GetInstance().getTransactions().remove(adapterPosition);
         notifyItemRemoved(adapterPosition);
+        account.updateCurrentBalance();
     }
 
     public class TransactionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

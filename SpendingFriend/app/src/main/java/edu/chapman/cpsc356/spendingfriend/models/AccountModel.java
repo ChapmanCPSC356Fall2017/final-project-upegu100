@@ -24,6 +24,7 @@ public class AccountModel
     private int type;
     private double startingBalance;
     private double currentBalance;
+    private int numTransactions;
 
 
     //Constructors
@@ -35,6 +36,7 @@ public class AccountModel
         this.type = AccountModel.CHECKING;
         this.startingBalance = 0;
         this.currentBalance = 0;
+        this.numTransactions = 0;
     }
 
     public AccountModel(String name, double startingBalance)
@@ -45,6 +47,7 @@ public class AccountModel
         this.type = AccountModel.CHECKING;
         this.startingBalance = startingBalance;
         this.currentBalance = startingBalance;
+        this.numTransactions = 0;
     }
 
     //Getters
@@ -60,6 +63,7 @@ public class AccountModel
     public double getCurrentBalance() {
         return this.currentBalance;
     }
+    public int getNumTransactions() { return this.numTransactions; }
 
     //Setters
     public void setName(String name) {
@@ -74,6 +78,29 @@ public class AccountModel
     public void setStartingBalance(double startingBalance){this.startingBalance = startingBalance;}
     public void setAmount(double currentBalance) {
         this.currentBalance = currentBalance;
+    }
+    public void setNumTransactions(int numTransactions) {this.numTransactions = numTransactions; }
+
+    public void addTransaction(){this.numTransactions += 1; }
+    public void removeTransaction(){ this.numTransactions -= 1;}
+
+    public void updateCurrentBalance()
+    {
+        this.currentBalance = this.startingBalance;
+        for (TransactionModel transaction : TransactionCollection.GetInstance().getTransactions())
+        {
+            if (transaction.getAccount().getId().equals(this.id))
+            {
+                if (transaction.isDeposit())
+                {
+                    this.currentBalance += transaction.getAmount();
+                }
+                else
+                {
+                    this.currentBalance -= transaction.getAmount();
+                }
+            }
+        }
     }
 
     public boolean equals(AccountModel account)

@@ -66,9 +66,7 @@ public class TransactionModel
     public DateTime getDate() { return this.date; }
 
     //Setters
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
+    public void setAmount(double amount) {this.amount = amount;}
     public void setAccount(AccountModel account) {
         this.account = account;
     }

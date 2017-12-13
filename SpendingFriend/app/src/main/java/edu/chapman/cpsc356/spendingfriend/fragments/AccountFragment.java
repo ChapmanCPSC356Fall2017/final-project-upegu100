@@ -55,7 +55,8 @@ public class AccountFragment extends Fragment
         this.accountStartingBalanceEditText.setText(Double.toString(account.getStartingBalance()));
 
         this.accountCurrentBalanceTextView = v.findViewById(R.id.et_account_current_balance);
-        //TODO: How to calculate current balance and what class to do that in
+        this.account.updateCurrentBalance();
+        this.accountCurrentBalanceTextView.setText(Double.toString(this.account.getCurrentBalance()));
 
         this.checkingRadioButton = v.findViewById(R.id.rb_checking);
         this.savingsRadioButton = v.findViewById(R.id.rb_savings);
