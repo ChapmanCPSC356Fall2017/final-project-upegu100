@@ -1,12 +1,88 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="edu.chapman.cpsc356.spendingfriend.fragments.BudgetFragment">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Budget Fragment" />
+        android:layout_height="wrap_content"
+        tools:context="edu.chapman.cpsc356.spendingfriend.fragments.BudgetFragment">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tv_budget_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textSize="25sp"
+            tools:text="Budget for \nAccountName" />
+
+        <TextView
+            android:id="@+id/tv_monthly_spending_cap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_budget_header"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/monthly_spending_cap"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/et_monthly_spending_cap"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_below="@+id/tv_monthly_spending_cap"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:text=""
+            android:textSize="20sp"
+            android:inputType="numberDecimal"
+            tools:text="$00.00" />
+
+        <TextView
+            android:id="@+id/tv_monthly_income_goal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_monthly_spending_cap"
+            android:layout_marginTop="15dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/monthly_income_goal"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/et_monthly_income_goal"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_below="@+id/tv_monthly_income_goal"
+            android:layout_marginTop="15dp"
+            android:layout_centerHorizontal="true"
+            android:text=""
+            android:textSize="20sp"
+            android:inputType="numberDecimal"
+            tools:text="$00.00"/>
+
+        <TextView
+            android:id="@+id/tv_total_savings_goal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_monthly_income_goal"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/total_savings_goal"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/et_total_savings_goal"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_below="@+id/tv_total_savings_goal"
+            android:layout_marginTop="15dp"
+            android:layout_centerHorizontal="true"
+            android:text=""
+            android:textSize="20sp"
+            android:inputType="numberDecimal"
+            tools:text="$00.00"/>
+    </RelativeLayout>
+</ScrollView>

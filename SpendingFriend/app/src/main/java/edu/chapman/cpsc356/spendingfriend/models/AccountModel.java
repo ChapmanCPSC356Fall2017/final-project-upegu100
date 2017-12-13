@@ -1,9 +1,7 @@
 package edu.chapman.cpsc356.spendingfriend.models;
 
-import java.util.Random;
 import java.util.UUID;
 
-import edu.chapman.cpsc356.spendingfriend.R;
 import edu.chapman.cpsc356.spendingfriend.collections.TransactionCollection;
 
 /**
@@ -25,7 +23,9 @@ public class AccountModel
     private double startingBalance;
     private double currentBalance;
     private int numTransactions;
-
+    private double monthlySpendingCap;
+    private double monthlyIncomeGoal;
+    private double totalSavingsGoal;
 
     //Constructors
     public AccountModel()
@@ -64,6 +64,15 @@ public class AccountModel
         return this.currentBalance;
     }
     public int getNumTransactions() { return this.numTransactions; }
+    public double getMonthlySpendingCap() {
+        return monthlySpendingCap;
+    }
+    public double getMonthlyIncomeGoal() {
+        return monthlyIncomeGoal;
+    }
+    public double getTotalSavingsGoal() {
+        return totalSavingsGoal;
+    }
 
     //Setters
     public void setName(String name) {
@@ -80,6 +89,12 @@ public class AccountModel
         this.currentBalance = currentBalance;
     }
     public void setNumTransactions(int numTransactions) {this.numTransactions = numTransactions; }
+    public void setMonthlySpendingCap(double monthlySpendingCap) {this.monthlySpendingCap = monthlySpendingCap;}
+    public void setMonthlyIncomeGoal(double monthlyIncomeGoal) {this.monthlyIncomeGoal = monthlyIncomeGoal;}
+
+    public void setTotalSavingsGoal(double totalSavingsGoal) {
+        this.totalSavingsGoal = totalSavingsGoal;
+    }
 
     public void addTransaction(){this.numTransactions += 1; }
     public void removeTransaction(){ this.numTransactions -= 1;}

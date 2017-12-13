@@ -1,5 +1,7 @@
 package edu.chapman.cpsc356.spendingfriend.models;
 
+import java.time.chrono.ThaiBuddhistEra;
+
 /**
  * Created by Nadiya on 12/10/2017.
  */
@@ -7,12 +9,26 @@ package edu.chapman.cpsc356.spendingfriend.models;
 public class BudgetModel
 {
     //Static Variables and Methods
-    private static BudgetModel budget;
-
-    public BudgetModel GetInstance() {return this.budget;}
+    private static BudgetModel TOTAL_BUDGET;
 
     //Member Variables and Methods
-    private double savingsGoal;
-    private double monthlySpendingCap;
-    private double monthlySavingsGoal;
+    private AccountModel account;
+
+
+    public BudgetModel()
+    {
+        this.account = null;
+    }
+
+    //Getters
+    public AccountModel getAccount()
+    {
+        return account;
+    }
+
+    //Setters
+    public void setAccount(AccountModel accout)
+    {
+        this.account = account;
+    }
 }
