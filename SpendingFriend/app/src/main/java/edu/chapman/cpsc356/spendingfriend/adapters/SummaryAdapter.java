@@ -1,7 +1,6 @@
 package edu.chapman.cpsc356.spendingfriend.adapters;
 
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,64 +70,57 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.SummaryV
         {
             this.account = account;
             this.summaryHeaderTextView.setText(account.getName());
-            this.monthlySpentTextView.setText(Double.toString(this.account.calcSpent()));
-            this.monthlySpendingCapTextView.setText(Double.toString(account.getMonthlySpendingCap()));
 
-            Double spentDiff = account.calcBudgetDiffSpent();
-            if (spentDiff > 0)
+            if (this.account.equals(AccountCollection.GetTotalAccount()))
             {
-                this.differenceSpentTextView.setText(writeUnderBudgetMessage(spentDiff));
-            }
-            else if (spentDiff < 0)
-            {
-                this.differenceSpentTextView.setText(writeOverBudgetMessage(-spentDiff));
+                this.totalSavingsTextView.setText(Double.toString(AccountCollection.GetInstance().getCurrentTotalBalance()));
             }
             else
             {
-                this.differenceSpentTextView.setText(writeOnBudgetMessage());
-            }
+                this.monthlySpentTextView.setText(Double.toString(this.account.calcSpent()));
+                this.monthlySpendingCapTextView.setText(Double.toString(account.getMonthlySpendingCap()));
 
-            this.monthlyEarnedTextView.setText(Double.toString(this.account.calcEarned()));
-            this.monthlyIncomeGoalTextView.setText(Double.toString(account.getMonthlyIncomeGoal()));
+                Double spentDiff = account.calcBudgetDiffSpent();
+                if (spentDiff > 0) {
+                    this.differenceSpentTextView.setText(writeUnderBudgetMessage(spentDiff));
+                } else if (spentDiff < 0) {
+                    this.differenceSpentTextView.setText(writeOverBudgetMessage(-spentDiff));
+                } else {
+                    this.differenceSpentTextView.setText(writeOnBudgetMessage());
+                }
 
-            Double earnedDiff = this.account.callBudgetDiffEarned();
-            if (earnedDiff > 0)
-            {
-                this.differenceEarnedTextView.setText(writeEarnedMoreMessage(earnedDiff));
-            }
-            else if (earnedDiff < 0)
-            {
-                this.differenceEarnedTextView.setText(writeEarnedLessMessage(-earnedDiff));
-            }
-            else
-            {
-                this.differenceEarnedTextView.setText(writeEarnedExactMessage());
-            }
+                this.monthlyEarnedTextView.setText(Double.toString(this.account.calcEarned()));
+                this.monthlyIncomeGoalTextView.setText(Double.toString(account.getMonthlyIncomeGoal()));
 
-            this.totalSavingsTextView.setText(Double.toString(this.account.getCurrentBalance()));
-            this.totalSavingsGoalTextView.setText(Double.toString(account.getTotalSavingsGoal()));
+                Double earnedDiff = this.account.calcBudgetDiffEarned();
+                if (earnedDiff > 0) {
+                    this.differenceEarnedTextView.setText(writeEarnedMoreMessage(earnedDiff));
+                } else if (earnedDiff < 0) {
+                    this.differenceEarnedTextView.setText(writeEarnedLessMessage(-earnedDiff));
+                } else {
+                    this.differenceEarnedTextView.setText(writeEarnedExactMessage());
+                }
 
-            Double savingsDiff = account.callBudgetDiffSavings();
-            if (savingsDiff > 0)
-            {
-                this.differenceSavingsTextView.setText(writeMoreSavingsMessage(savingsDiff));
-            }
-            else if (savingsDiff < 0)
-            {
-                this.differenceSavingsTextView.setText(writeLessSavingsMessage(-savingsDiff));
-            }
-            else
-            {
-                this.differenceSavingsTextView.setText(writeExactSavingsMessage());
+                this.totalSavingsTextView.setText(Double.toString(this.account.getCurrentBalance()));
+                this.totalSavingsGoalTextView.setText(Double.toString(account.getTotalSavingsGoal()));
+
+                Double savingsDiff = account.calcBudgetDiffSavings();
+                if (savingsDiff > 0) {
+                    this.differenceSavingsTextView.setText(writeMoreSavingsMessage(savingsDiff));
+                } else if (savingsDiff < 0) {
+                    this.differenceSavingsTextView.setText(writeLessSavingsMessage(-savingsDiff));
+                } else {
+                    this.differenceSavingsTextView.setText(writeExactSavingsMessage());
+                }
             }
         }
 
-        public String writeOverBudgetMessage(Double amount)
+        public String writeOverBudgetMessage(double amount)
         {
             return "Uh oh, you are currently $" + amount + " over budget.";
         }
 
-        public String writeUnderBudgetMessage(Double amount)
+        public String writeUnderBudgetMessage(double amount)
         {
             return "You are currently $" + amount + " under budget. Keep it up!";
         }
@@ -138,12 +130,12 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.SummaryV
             return "Talk about being exact, you are right on your budget. Good job!";
         }
 
-        public String writeEarnedMoreMessage(Double amount)
+        public String writeEarnedMoreMessage(double amount)
         {
             return "Look at you, you've earned $" + amount + " more than your goal!";
         }
 
-        public String writeEarnedLessMessage(Double amount)
+        public String writeEarnedLessMessage(double amount)
         {
             return "Oh no, you are $" + amount + " behind your income goal";
         }
@@ -153,12 +145,12 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.SummaryV
             return "Well fancy that, you earned exactly what you wanted to!";
         }
 
-        public String writeMoreSavingsMessage(Double amount)
+        public String writeMoreSavingsMessage(double amount)
         {
             return "How cool is that, you have saved $" + amount + " more than you planned.";
         }
 
-        public String writeLessSavingsMessage(Double amount)
+        public String writeLessSavingsMessage(double amount)
         {
             return "Sadly, you're $" + amount + " behind your savings goals this month.";
         }

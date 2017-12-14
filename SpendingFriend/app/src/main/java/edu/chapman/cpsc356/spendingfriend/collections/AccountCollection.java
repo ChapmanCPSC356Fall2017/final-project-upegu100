@@ -86,6 +86,16 @@ public class AccountCollection
 
         return null;
     }
+    public double getCurrentTotalBalance()
+    {
+        double totalBalance = 0;
+        for (AccountModel account : accounts)
+        {
+            totalBalance += account.getCurrentBalance();
+        }
+
+        return totalBalance;
+    }
 
     public void addAccount(AccountModel account)
     {

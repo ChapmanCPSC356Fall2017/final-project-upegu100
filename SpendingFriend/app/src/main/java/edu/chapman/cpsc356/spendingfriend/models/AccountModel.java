@@ -89,6 +89,7 @@ public class AccountModel
         this.type = type;
     }
     public void setStartingBalance(double startingBalance){this.startingBalance = startingBalance;}
+    public void setCurrentBalance(double currentBalance) {this.currentBalance = currentBalance;}
     public void setAmount(double currentBalance) {this.currentBalance = currentBalance;}
     public void setMonthlySpendingCap(double monthlySpendingCap) {this.monthlySpendingCap = monthlySpendingCap;}
     public void setMonthlyIncomeGoal(double monthlyIncomeGoal) {this.monthlyIncomeGoal = monthlyIncomeGoal;}
@@ -168,12 +169,12 @@ public class AccountModel
         return (this.calcSpent() - this.monthlySpendingCap);
     }
 
-    public double callBudgetDiffEarned()
+    public double calcBudgetDiffEarned()
     {
         return (this.calcEarned() - this.getMonthlyIncomeGoal());
     }
 
-    public double callBudgetDiffSavings()
+    public double calcBudgetDiffSavings()
     {
         return (this.getCurrentBalance() - this.totalSavingsGoal);
     }

@@ -50,8 +50,8 @@ public class TransactionCollection
 
     private void generateFakeData()
     {
-        transactions.add(new TransactionModel("Groceries", 200.45, false));
-        transactions.add(new TransactionModel("Tutoring", 40.13, true));
-        transactions.add(new TransactionModel("Dinner", 25.66, false));
+        transactions.add(new TransactionModel("Groceries", 20, false));
+        transactions.add(new TransactionModel("Tutoring", 100, true));
+        transactions.add(new TransactionModel("Dinner", 15, false));
     }
 }
