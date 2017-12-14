@@ -66,7 +66,9 @@ public class AccountModel
     }
     public int getType() { return this.type; }
     public double getStartingBalance() {return this.startingBalance;}
-    public double getCurrentBalance() {
+    public double getCurrentBalance()
+    {
+        updateCurrentBalance();
         return this.currentBalance;
     }
     public int getNumTransactions() { return this.numTransactions; }
@@ -144,5 +146,48 @@ public class AccountModel
         }
         return false;
     }
+
+    public double calcEarned()
+    {
+        double earned = 0;
+        for (TransactionModel transaction : TransactionCollection.GetInstance().getTransactions())
+        {
+            if (transaction.getAccount().equals(this) & transaction.isDeposit())
+            {
+                earned += transaction.getAmount();
+            }
+        }
+        return earned;
+    }
+
+    public double calcSpent()
+    {
+        double spent = 0;
+        for (TransactionModel transaction : TransactionCollection.GetInstance().getTransactions())
+        {
+            if (transaction.getAccount().equals(this) & transaction.isWithdrawal())
+            {
+                spent -= transaction.getAmount();
+            }
+        }
+        return spent;
+    }
+
+    public double calcBudgetDiffSpent()
+    {
+        return (this.calcSpent() - this.monthlySpendingCap);
+    }
+
+    public double callBudgetDiffEarned()
+    {
+        return (this.calcEarned() - this.getMonthlyIncomeGoal());
+    }
+
+    public double callBudgetDiffSavings()
+    {
+        updateCurrentBalance();
+        return (this.currentBalance - this.totalSavingsGoal);
+    }
+
 
 }

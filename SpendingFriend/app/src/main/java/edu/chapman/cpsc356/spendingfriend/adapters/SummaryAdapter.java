@@ -71,9 +71,15 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.SummaryV
         {
             this.account = account;
             this.summaryHeaderTextView.setText(account.getName());
+            this.monthlySpentTextView.setText(Double.toString(this.account.calcSpent()));
             this.monthlySpendingCapTextView.setText(Double.toString(account.getMonthlySpendingCap()));
+            this.differenceSpentTextView.setText(Double.toString(this.account.calcBudgetDiffSpent()));
+            this.monthlyEarnedTextView.setText(Double.toString(this.account.calcEarned()));
             this.monthlyIncomeGoalTextView.setText(Double.toString(account.getMonthlyIncomeGoal()));
+            this.differenceEarnedTextView.setText(Double.toString(this.account.callBudgetDiffEarned()));
+            this.totalSavingsTextView.setText(Double.toString(this.account.getCurrentBalance()));
             this.totalSavingsGoalTextView.setText(Double.toString(account.getTotalSavingsGoal()));
+            this.differenceSavingsTextView.setText(Double.toString(account.calcBudgetDiffSpent()));
         }
     }
 }
