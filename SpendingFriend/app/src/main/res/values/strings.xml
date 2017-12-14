@@ -11,7 +11,6 @@
     <string name="account_balance">Account Balance</string>
     <string name="dollar_symbol">$</string>
     <string name="checking">Checking</string>
-    <string name="savings">Savings</string>
     <string name="account_name">Account Name</string>
     <string name="transaction_amount">Transaction Amount</string>
     <string name="deposit">Deposit</string>
@@ -31,4 +30,6 @@
     <string name="earned">Earned</string>
     <string name="your_monthly_cap">Your Monthly Spending Cap</string>
     <string name="your_monthly_income_goal">Your Monthly Income Goal</string>
+    <string name="savings">Savings</string>
+    <string name="your_total_savings_goal">Your Total Savings Goal</string>
 </resources>
