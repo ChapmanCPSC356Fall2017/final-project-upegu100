@@ -42,17 +42,38 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.SummaryV
     {
         private AccountModel account;
         private TextView summaryHeaderTextView;
+        private TextView monthlySpentTextView;
+        private TextView monthlySpendingCapTextView;
+        private TextView differenceSpentTextView;
+        private TextView monthlyEarnedTextView;
+        private TextView monthlyIncomeGoalTextView;
+        private TextView differenceEarnedTextView;
+        private TextView totalSavingsTextView;
+        private TextView totalSavingsGoalTextView;
+        private TextView differenceSavingsTextView;
 
         public SummaryViewHolder(View itemView)
         {
             super(itemView);
             this.summaryHeaderTextView = itemView.findViewById(R.id.tv_summary_header);
+            this.monthlySpentTextView = itemView.findViewById(R.id.tv_monthly_spent);
+            this.monthlySpendingCapTextView = itemView.findViewById(R.id.tv_monthly_cap);
+            this.differenceSpentTextView = itemView.findViewById(R.id.tv_spending_difference);
+            this.monthlyEarnedTextView = itemView.findViewById(R.id.tv_income_earned);
+            this.monthlyIncomeGoalTextView = itemView.findViewById(R.id.tv_monthly_income_goal_summary);
+            this.differenceEarnedTextView = itemView.findViewById(R.id.tv_income_difference);
+            this.totalSavingsTextView = itemView.findViewById(R.id.tv_savings);
+            this.totalSavingsGoalTextView = itemView.findViewById(R.id.tv_monthly_savings_goal_summary);
+            this.differenceSavingsTextView = itemView.findViewById(R.id.tv_total_difference);
         }
 
         public void setUp(AccountModel account)
         {
             this.account = account;
             this.summaryHeaderTextView.setText(account.getName());
+            this.monthlySpendingCapTextView.setText(Double.toString(account.getMonthlySpendingCap()));
+            this.monthlyIncomeGoalTextView.setText(Double.toString(account.getMonthlyIncomeGoal()));
+            this.totalSavingsGoalTextView.setText(Double.toString(account.getTotalSavingsGoal()));
         }
     }
 }
