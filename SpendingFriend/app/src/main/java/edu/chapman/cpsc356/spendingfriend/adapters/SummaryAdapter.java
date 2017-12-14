@@ -73,13 +73,100 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.SummaryV
             this.summaryHeaderTextView.setText(account.getName());
             this.monthlySpentTextView.setText(Double.toString(this.account.calcSpent()));
             this.monthlySpendingCapTextView.setText(Double.toString(account.getMonthlySpendingCap()));
-            this.differenceSpentTextView.setText(Double.toString(this.account.calcBudgetDiffSpent()));
+
+            Double spentDiff = account.calcBudgetDiffSpent();
+            if (spentDiff > 0)
+            {
+                this.differenceSpentTextView.setText(writeUnderBudgetMessage(spentDiff));
+            }
+            else if (spentDiff < 0)
+            {
+                this.differenceSpentTextView.setText(writeOverBudgetMessage(-spentDiff));
+            }
+            else
+            {
+                this.differenceSpentTextView.setText(writeOnBudgetMessage());
+            }
+
             this.monthlyEarnedTextView.setText(Double.toString(this.account.calcEarned()));
             this.monthlyIncomeGoalTextView.setText(Double.toString(account.getMonthlyIncomeGoal()));
-            this.differenceEarnedTextView.setText(Double.toString(this.account.callBudgetDiffEarned()));
+
+            Double earnedDiff = this.account.callBudgetDiffEarned();
+            if (earnedDiff > 0)
+            {
+                this.differenceEarnedTextView.setText(writeEarnedMoreMessage(earnedDiff));
+            }
+            else if (earnedDiff < 0)
+            {
+                this.differenceEarnedTextView.setText(writeEarnedLessMessage(-earnedDiff));
+            }
+            else
+            {
+                this.differenceEarnedTextView.setText(writeEarnedExactMessage());
+            }
+
             this.totalSavingsTextView.setText(Double.toString(this.account.getCurrentBalance()));
             this.totalSavingsGoalTextView.setText(Double.toString(account.getTotalSavingsGoal()));
-            this.differenceSavingsTextView.setText(Double.toString(account.calcBudgetDiffSpent()));
+
+            Double savingsDiff = account.callBudgetDiffSavings();
+            if (savingsDiff > 0)
+            {
+                this.differenceSavingsTextView.setText(writeMoreSavingsMessage(savingsDiff));
+            }
+            else if (savingsDiff < 0)
+            {
+                this.differenceSavingsTextView.setText(writeLessSavingsMessage(-savingsDiff));
+            }
+            else
+            {
+                this.differenceSavingsTextView.setText(writeExactSavingsMessage());
+            }
         }
+
+        public String writeOverBudgetMessage(Double amount)
+        {
+            return "Uh oh, you are currently $" + amount + " over budget.";
+        }
+
+        public String writeUnderBudgetMessage(Double amount)
+        {
+            return "You are currently $" + amount + " under budget. Keep it up!";
+        }
+
+        public String writeOnBudgetMessage()
+        {
+            return "Talk about being exact, you are right on your budget. Good job!";
+        }
+
+        public String writeEarnedMoreMessage(Double amount)
+        {
+            return "Look at you, you've earned $" + amount + " more than your goal!";
+        }
+
+        public String writeEarnedLessMessage(Double amount)
+        {
+            return "Oh no, you are $" + amount + " behind your income goal";
+        }
+
+        public String writeEarnedExactMessage()
+        {
+            return "Well fancy that, you earned exactly what you wanted to!";
+        }
+
+        public String writeMoreSavingsMessage(Double amount)
+        {
+            return "How cool is that, you have saved $" + amount + " more than you planned.";
+        }
+
+        public String writeLessSavingsMessage(Double amount)
+        {
+            return "Sadly, you're $" + amount + " behind your savings goals this month.";
+        }
+
+        public String writeExactSavingsMessage()
+        {
+            return "A penny saved is a penny earned and you have saved the exact amount that you wanted!";
+        }
+
     }
 }

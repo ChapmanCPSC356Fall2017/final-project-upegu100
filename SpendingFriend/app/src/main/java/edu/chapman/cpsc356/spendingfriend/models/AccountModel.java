@@ -13,7 +13,6 @@ public class AccountModel
     //Static Variables
     public static int CHECKING = 0;
     public static int SAVINGS = 1;
-    public static int CASH = 2;
 
     //Member Variables
     private String id;
@@ -22,7 +21,6 @@ public class AccountModel
     private int type;
     private double startingBalance;
     private double currentBalance;
-    private int numTransactions;
     private double monthlySpendingCap;
     private double monthlyIncomeGoal;
     private double totalSavingsGoal;
@@ -36,7 +34,6 @@ public class AccountModel
         this.type = AccountModel.CHECKING;
         this.startingBalance = 0;
         this.currentBalance = 0;
-        this.numTransactions = 0;
         this.monthlySpendingCap = 0;
         this.monthlyIncomeGoal = 0;
         this.totalSavingsGoal = 0;
@@ -50,7 +47,6 @@ public class AccountModel
         this.type = AccountModel.CHECKING;
         this.startingBalance = startingBalance;
         this.currentBalance = startingBalance;
-        this.numTransactions = 0;
         this.monthlySpendingCap = 0;
         this.monthlyIncomeGoal = 0;
         this.totalSavingsGoal = 0;
@@ -71,7 +67,7 @@ public class AccountModel
         updateCurrentBalance();
         return this.currentBalance;
     }
-    public int getNumTransactions() { return this.numTransactions; }
+    //public int getNumTransactions() { return this.numTransactions; }
     public double getMonthlySpendingCap() {
         return monthlySpendingCap;
     }
@@ -93,10 +89,7 @@ public class AccountModel
         this.type = type;
     }
     public void setStartingBalance(double startingBalance){this.startingBalance = startingBalance;}
-    public void setAmount(double currentBalance) {
-        this.currentBalance = currentBalance;
-    }
-    public void setNumTransactions(int numTransactions) {this.numTransactions = numTransactions; }
+    public void setAmount(double currentBalance) {this.currentBalance = currentBalance;}
     public void setMonthlySpendingCap(double monthlySpendingCap) {this.monthlySpendingCap = monthlySpendingCap;}
     public void setMonthlyIncomeGoal(double monthlyIncomeGoal) {this.monthlyIncomeGoal = monthlyIncomeGoal;}
 
@@ -104,15 +97,12 @@ public class AccountModel
         this.totalSavingsGoal = totalSavingsGoal;
     }
 
-    public void addTransaction(){this.numTransactions += 1; }
-    public void removeTransaction(){ this.numTransactions -= 1;}
-
     public void updateCurrentBalance()
     {
         this.currentBalance = this.startingBalance;
         for (TransactionModel transaction : TransactionCollection.GetInstance().getTransactions())
         {
-            if (transaction.getAccount().getId().equals(this.id))
+            if (transaction.getAccount().equals(this))
             {
                 if (transaction.isDeposit())
                 {
@@ -185,8 +175,7 @@ public class AccountModel
 
     public double callBudgetDiffSavings()
     {
-        updateCurrentBalance();
-        return (this.currentBalance - this.totalSavingsGoal);
+        return (this.getCurrentBalance() - this.totalSavingsGoal);
     }
 
 

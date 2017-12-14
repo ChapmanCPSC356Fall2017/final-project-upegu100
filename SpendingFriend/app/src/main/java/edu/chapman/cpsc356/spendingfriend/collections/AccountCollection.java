@@ -101,6 +101,8 @@ public class AccountCollection
 
     private void generateFakeData()
     {
-       // addAccount(new AccountModel("BOA Checking", 2050));
+       addAccount(new AccountModel("BOA Checking", 2050));
+       addAccount(new AccountModel("BOA Savings", 10000));
+       addAccount(new AccountModel("KeyBank Student Checking", 1000));
     }
 }
