@@ -1,10 +1,7 @@
 package edu.chapman.cpsc356.spendingfriend.fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -18,7 +15,6 @@ import android.widget.RadioButton;
 
 import org.joda.time.DateTime;
 
-import edu.chapman.cpsc356.spendingfriend.MoneyFormat;
 import edu.chapman.cpsc356.spendingfriend.ParseHelper;
 import edu.chapman.cpsc356.spendingfriend.R;
 import edu.chapman.cpsc356.spendingfriend.activities.TransactionActivity;
@@ -171,5 +167,14 @@ public class TransactionFragment extends Fragment {
         }
 
         return false;
+    }
+
+    public boolean isValidTransactionName()
+    {
+        if (this.transaction.getName().equals("") || ParseHelper.AllWhiteSpace(transaction.getName()))
+        {
+            return false;
+        }
+        return true;
     }
 }

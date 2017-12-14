@@ -12,12 +12,106 @@
         android:layout_height="wrap_content"
         android:textSize="25sp"
         android:gravity="center"
+        android:layout_marginBottom="10dp"
         android:layout_centerHorizontal="true"
         android:text="@string/account_summaries"/>
 
+    <LinearLayout
+        android:id="@+id/ll_first_six_months"
+        android:layout_below="@id/tv_account_summaries"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_jan"
+            android:layout_width="55dp"
+            android:layout_height="40dp"
+            android:text="Jan"
+            android:textSize="14sp"/>
+        <Button
+            android:id="@+id/btn_feb"
+            android:layout_width="55dp"
+            android:layout_height="40dp"
+            android:text="Feb"
+            android:textSize="14sp"/>
+        <Button
+            android:id="@+id/btn_mar"
+            android:layout_width="55dp"
+            android:layout_height="40dp"
+            android:text="Mar"
+            android:textSize="14sp"/>
+        <Button
+            android:id="@+id/btn_apr"
+            android:layout_width="55dp"
+            android:layout_height="40dp"
+            android:text="Apr"
+            android:textSize="14sp"/>
+        <Button
+            android:id="@+id/btn_may"
+            android:layout_width="55dp"
+            android:layout_height="40dp"
+            android:text="May"
+            android:textSize="14sp"/>
+        <Button
+            android:id="@+id/btn_jun"
+            android:layout_width="55dp"
+            android:layout_height="40dp"
+            android:text="Jun"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_second_six_months"
+        android:layout_below="@id/ll_first_six_months"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_jul"
+            android:layout_width="55dp"
+            android:layout_height="40dp"
+            android:text="Jul"
+            android:textSize="14sp"/>
+        <Button
+            android:id="@+id/btn_aug"
+            android:layout_width="55dp"
+            android:layout_height="40dp"
+            android:text="Aug"
+            android:textSize="14sp"/>
+        <Button
+            android:id="@+id/btn_sep"
+            android:layout_width="55dp"
+            android:layout_height="40dp"
+            android:text="Sep"
+            android:textSize="14sp"/>
+        <Button
+            android:id="@+id/btn_oct"
+            android:layout_width="55dp"
+            android:layout_height="40dp"
+            android:text="Oct"
+            android:textSize="14sp"/>
+        <Button
+            android:id="@+id/btn_nov"
+            android:layout_width="55dp"
+            android:layout_height="40dp"
+            android:text="Nov"
+            android:textSize="14sp"/>
+        <Button
+            android:id="@+id/btn_dec"
+            android:layout_width="55dp"
+            android:layout_height="40dp"
+            android:text="Dec"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_summary"
-        android:layout_below="@+id/tv_account_summaries"
+        android:layout_below="@+id/ll_second_six_months"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </android.support.v7.widget.RecyclerView>

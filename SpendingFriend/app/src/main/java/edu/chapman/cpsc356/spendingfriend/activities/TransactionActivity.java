@@ -29,6 +29,11 @@ public class TransactionActivity extends SingleFragmentActivity
         switch (item.getItemId())
         {
             case android.R.id.home:
+                if(!this.transactionFragment.isValidTransactionName())
+                {
+                    writeNameErrorMessage();
+                    return true;
+                }
                 if (!this.transactionFragment.isValidAccountName())
                 {
                     writeAccountErrorMessage();
@@ -60,5 +65,10 @@ public class TransactionActivity extends SingleFragmentActivity
     public void writeAccountErrorMessage()
     {
         Toast.makeText(this, "Uh oh! The account you typed does not exist.", Toast.LENGTH_SHORT).show();
+    }
+    public void writeNameErrorMessage()
+    {
+        Toast.makeText(this, "Looks like you forgot to name you transaction!", Toast.LENGTH_SHORT).show();
+
     }
 }

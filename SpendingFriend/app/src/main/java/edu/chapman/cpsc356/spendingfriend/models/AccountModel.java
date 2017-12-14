@@ -158,7 +158,7 @@ public class AccountModel
         {
             if (transaction.getAccount().equals(this) & transaction.isWithdrawal())
             {
-                spent -= transaction.getAmount();
+                spent += transaction.getAmount();
             }
         }
         return spent;

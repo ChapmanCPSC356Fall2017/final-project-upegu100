@@ -3,6 +3,7 @@ package edu.chapman.cpsc356.spendingfriend.collections;
 import java.util.ArrayList;
 
 import edu.chapman.cpsc356.spendingfriend.models.AccountModel;
+import edu.chapman.cpsc356.spendingfriend.models.TransactionModel;
 
 /**
  * Created by Nadiya on 12/9/2017.
@@ -95,6 +96,32 @@ public class AccountCollection
         }
 
         return totalBalance;
+    }
+
+    public double getTotalSpent()
+    {
+        double totalSpent = 0;
+        for(TransactionModel transaction : TransactionCollection.GetInstance().getTransactions())
+        {
+            if (transaction.isWithdrawal())
+            {
+                totalSpent += transaction.getAmount();
+            }
+        }
+        return totalSpent;
+    }
+
+    public double getTotalEarned()
+    {
+        double totalEarned = 0;
+        for(TransactionModel transaction : TransactionCollection.GetInstance().getTransactions())
+        {
+            if (transaction.isDeposit())
+            {
+                totalEarned += transaction.getAmount();
+            }
+        }
+        return totalEarned;
     }
 
     public void addAccount(AccountModel account)

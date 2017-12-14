@@ -6,6 +6,7 @@ package edu.chapman.cpsc356.spendingfriend;
 
 public class ParseHelper
 {
+    public static final String EMPTY_STRING = "";
     public static boolean tryParseInt(String s)
     {
         try
@@ -30,5 +31,18 @@ public class ParseHelper
         {
             return false;
         }
+    }
+
+    public static boolean AllWhiteSpace(String s)
+    {
+        char[] sCharArray = s.toCharArray();
+        for (int i = 0; i < sCharArray.length; i++)
+        {
+            if (sCharArray[i] != ' ')
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

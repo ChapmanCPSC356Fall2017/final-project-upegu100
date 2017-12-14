@@ -73,6 +73,8 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.SummaryV
 
             if (this.account.equals(AccountCollection.GetTotalAccount()))
             {
+                this.monthlySpentTextView.setText(Double.toString(AccountCollection.GetInstance().getTotalSpent()));
+                this.monthlyEarnedTextView.setText(Double.toString(AccountCollection.GetInstance().getTotalEarned()));
                 this.totalSavingsTextView.setText(Double.toString(AccountCollection.GetInstance().getCurrentTotalBalance()));
             }
             else
@@ -82,9 +84,9 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.SummaryV
 
                 Double spentDiff = account.calcBudgetDiffSpent();
                 if (spentDiff > 0) {
-                    this.differenceSpentTextView.setText(writeUnderBudgetMessage(spentDiff));
+                    this.differenceSpentTextView.setText(writeOverBudgetMessage(spentDiff));
                 } else if (spentDiff < 0) {
-                    this.differenceSpentTextView.setText(writeOverBudgetMessage(-spentDiff));
+                    this.differenceSpentTextView.setText(writeUnderBudgetMessage(-spentDiff));
                 } else {
                     this.differenceSpentTextView.setText(writeOnBudgetMessage());
                 }
