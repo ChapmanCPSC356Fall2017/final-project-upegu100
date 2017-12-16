@@ -1,8 +1,5 @@
 package edu.chapman.cpsc356.spendingfriend.activities;
 
-import android.app.AlertDialog;
-import android.app.SearchManager;
-import android.content.DialogInterface;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;

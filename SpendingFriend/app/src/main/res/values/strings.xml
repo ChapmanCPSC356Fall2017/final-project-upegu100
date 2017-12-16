@@ -32,4 +32,8 @@
     <string name="your_monthly_income_goal">Your Monthly Income Goal</string>
     <string name="savings">Savings</string>
     <string name="your_total_savings_goal">Your Total Savings Goal</string>
+    <string name="delete_error_message_part_1">Uh oh! It looks like you have transactions under this account</string>
+    <string name="delete_error_message_part_2">and therefore cannot be deleted.</string>
+    <string name="invalid_name_error_message_part_1">Whoops! Your account name already exists or it is invalid.</string>
+    <string name="invalid_name_error_message_part_2">Please try a new name.</string>
 </resources>

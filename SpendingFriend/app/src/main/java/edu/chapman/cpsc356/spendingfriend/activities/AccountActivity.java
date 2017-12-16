@@ -9,8 +9,11 @@ import android.widget.Toast;
 import edu.chapman.cpsc356.spendingfriend.R;
 import edu.chapman.cpsc356.spendingfriend.collections.AccountCollection;
 import edu.chapman.cpsc356.spendingfriend.fragments.AccountFragment;
-import edu.chapman.cpsc356.spendingfriend.models.AccountModel;
 
+/*
+* AccountActivity
+* Shows a single AccountFragment
+*/
 public class AccountActivity extends SingleFragmentActivity
 {
     public static final String EXTRA_ACCOUNT_ID = "extra_account_id";
@@ -41,6 +44,7 @@ public class AccountActivity extends SingleFragmentActivity
     {
         switch (item.getItemId())
         {
+            //Delete Account
             case R.id.menu_delete_account:
                 if (this.accountFragment.getAccount().hasTransaction())
                 {
@@ -55,6 +59,8 @@ public class AccountActivity extends SingleFragmentActivity
                     startActivity(intent);
                     return true;
                 }
+
+                //Home Button
             case android.R.id.home:
                 if (!this.accountFragment.isValidAccountName())
                 {
@@ -65,8 +71,6 @@ public class AccountActivity extends SingleFragmentActivity
                 {
                     return false;
                 }
-
-
             default:
                 return false;
         }
@@ -85,15 +89,21 @@ public class AccountActivity extends SingleFragmentActivity
         }
     }
 
+    /* writeInvalidNameErrorMessage()
+    * Makes Toast for invalid account names
+    */
     public void writeInvalidNameErrorMessage()
     {
-        Toast.makeText(this, "Whoops! Your account name already exists or it is invalid. " +
-                "Please try a new name.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.invalid_name_error_message_part_1) +
+                getString(R.string.invalid_name_error_message_part_2), Toast.LENGTH_SHORT).show();
     }
 
+    /* writeCannotDeleteErrorMessage()
+    * Makes Toast for when user cannot delete an account that has transactions associated to it
+    */
     public void writeCannotDeleteErrorMessage()
     {
-        Toast.makeText(this, "Uh oh! It looks like you have transactions under this account " +
-                "and therefore cannot be deleted.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.delete_error_message_part_1) +
+                getString(R.string.delete_error_message_part_2), Toast.LENGTH_SHORT).show();
     }
 }

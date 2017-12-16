@@ -41,6 +41,7 @@ public class AccountListActivity extends SingleFragmentActivity {
     {
         switch (item.getItemId())
         {
+            //Adds an Account
             case R.id.menu_add_account:
                 AccountModel newAccount = new AccountModel();
                 AccountCollection.GetInstance().addAccount(newAccount);
