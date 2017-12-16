@@ -1,6 +1,7 @@
 package edu.chapman.cpsc356.spendingfriend.adapters;
 
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,6 +71,16 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
             this.transaction = transaction;
             this.transactionNameTextView.setText(transaction.getName());
             this.transactionAmountTextView.setText(MoneyFormat.format(transaction.getAmount()));
+            if (this.transaction.isDeposit())
+            {
+                this.transactionAmountTextView.setTextColor(ContextCompat
+                        .getColor(transactionAmountTextView.getContext(), R.color.colorEarn));
+            }
+            else
+            {
+                this.transactionAmountTextView.setTextColor(ContextCompat
+                        .getColor(transactionAmountTextView.getContext(), R.color.colorLoss));
+            }
         }
 
         @Override

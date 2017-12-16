@@ -148,8 +148,6 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.SummaryV
         }
 
 
-
-
         //Error Messages
 
         public String writeOverBudgetMessage(double amount)

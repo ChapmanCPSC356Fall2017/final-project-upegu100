@@ -1,6 +1,7 @@
 package edu.chapman.cpsc356.spendingfriend.adapters;
 
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,6 +62,16 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
             this.accountNameTextView.setText(account.getName());
             this.account.updateCurrentBalance();
             this.accountCurrentBalanceTextView.setText("$" + MoneyFormat.format(account.getCurrentBalance()));
+            if (this.account.getCurrentBalance() > 0)
+            {
+                this.accountCurrentBalanceTextView.setTextColor(ContextCompat
+                        .getColor(accountCurrentBalanceTextView.getContext(), R.color.colorEarn));
+            }
+            else
+            {
+                this.accountCurrentBalanceTextView.setTextColor(ContextCompat
+                        .getColor(accountCurrentBalanceTextView.getContext(), R.color.colorLoss));
+            }
         }
 
         @Override

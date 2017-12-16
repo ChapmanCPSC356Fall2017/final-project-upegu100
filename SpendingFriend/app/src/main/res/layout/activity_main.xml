@@ -12,40 +12,44 @@
    <Button
        android:id="@+id/btn_accounts"
        android:text="@string/accounts"
-       android:textSize="30sp"
+       android:textSize="27sp"
        android:gravity="center"
        android:onClick="onAccountsClick"
        android:layout_marginBottom="20dp"
-       android:layout_width="300dp"
-       android:layout_height="80dp" />
+       android:layout_width="270dp"
+       android:layout_height="80dp"
+       android:background="@color/colorLightAccent"/>
 
     <Button
         android:id="@+id/btn_transactions"
         android:text="@string/transactions"
-        android:textSize="30sp"
+        android:textSize="27sp"
         android:gravity="center"
         android:onClick="onTransactionsClick"
         android:layout_marginBottom="20dp"
-        android:layout_width="300dp"
+        android:background="@color/colorLightAccent"
+        android:layout_width="270dp"
         android:layout_height="80dp" />
 
     <Button
         android:id="@+id/btn_budget"
         android:text="@string/budget"
-        android:textSize="30sp"
+        android:textSize="27sp"
         android:gravity="center"
         android:onClick="onBudgetClick"
         android:layout_marginBottom="20dp"
-        android:layout_width="300dp"
+        android:background="@color/colorLightAccent"
+        android:layout_width="270dp"
         android:layout_height="80dp" />
 
     <Button
         android:id="@+id/btn_summary"
         android:text="@string/summary"
-        android:textSize="30sp"
+        android:textSize="27sp"
         android:layout_gravity="center"
         android:onClick="onSummaryClick"
-        android:layout_width="300dp"
+        android:background="@color/colorLightAccent"
+        android:layout_width="270dp"
         android:layout_height="80dp" />
 
 </LinearLayout>
