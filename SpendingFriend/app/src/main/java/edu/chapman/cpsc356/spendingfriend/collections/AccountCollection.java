@@ -87,15 +87,19 @@ public class AccountCollection
 
         return null;
     }
-    public double getCurrentTotalBalance()
-    {
-        double totalBalance = 0;
-        for (AccountModel account : accounts)
-        {
-            totalBalance += account.getCurrentBalance();
-        }
 
-        return totalBalance;
+
+    public double getTotalMonthSpent(int month)
+    {
+        double totalMonthSpent = 0;
+        for (TransactionModel transaction : TransactionCollection.GetInstance().getTransactions())
+        {
+            if (transaction.isWithdrawal()&& transaction.getDate().getMonthOfYear() == month)
+            {
+                totalMonthSpent += transaction.getAmount();
+            }
+        }
+        return totalMonthSpent;
     }
 
     public double getTotalSpent()
@@ -111,6 +115,49 @@ public class AccountCollection
         return totalSpent;
     }
 
+    public double getTotalMonthSpendingCap()
+    {
+        double totalSpendingCap = 0;
+        for(AccountModel account : AccountCollection.GetInstance().getAccounts())
+        {
+            totalSpendingCap += account.getMonthlySpendingCap();
+        }
+        return totalSpendingCap;
+    }
+
+    public double getTotalMonthSpentDiff(int month)
+    {
+        return getTotalMonthSpent(month) - getTotalMonthSpendingCap();
+    }
+
+    public double getTotalMonthEarnedDiff(int month)
+    {
+        return getTotalMonthIncomeGoal() - getTotalMonthEarned(month);
+    }
+
+    public double getTotalMonthIncomeGoal()
+    {
+        double totalIncomeGoal = 0;
+        for (AccountModel account : AccountCollection.GetInstance().getAccounts())
+        {
+            totalIncomeGoal += account.getMonthlyIncomeGoal();
+        }
+        return totalIncomeGoal;
+    }
+
+    public double getTotalMonthEarned(int month)
+    {
+        double totalEarned = 0;
+        for(TransactionModel transaction : TransactionCollection.GetInstance().getTransactions())
+        {
+            if (transaction.isDeposit() && transaction.getDate().getMonthOfYear() == month)
+            {
+                totalEarned += transaction.getAmount();
+            }
+        }
+        return totalEarned;
+    }
+
     public double getTotalEarned()
     {
         double totalEarned = 0;
@@ -122,6 +169,32 @@ public class AccountCollection
             }
         }
         return totalEarned;
+    }
+
+    public double getCurrentTotalBalance()
+    {
+        double totalBalance = 0;
+        for (AccountModel account : accounts)
+        {
+            totalBalance += account.getCurrentBalance();
+        }
+
+        return totalBalance;
+    }
+
+    public double getTotalSavingsGoal()
+    {
+        double totalSavingsGoal = 0;
+        for (AccountModel account : accounts)
+        {
+            totalSavingsGoal += account.getTotalSavingsGoal();
+        }
+        return totalSavingsGoal;
+    }
+
+    public double getTotalSavingsDiff()
+    {
+        return getCurrentTotalBalance() - getTotalSavingsGoal();
     }
 
     public void addAccount(AccountModel account)
@@ -138,8 +211,11 @@ public class AccountCollection
 
     private void generateFakeData()
     {
-       addAccount(new AccountModel("BOA Checking", 2050));
-       addAccount(new AccountModel("BOA Savings", 10000));
-       addAccount(new AccountModel("KeyBank Student Checking", 1000));
+        addAccount(new AccountModel("BOA Checking", 1000,
+                20879789, AccountModel.CHECKING, 100, 500,
+                2500));
+        addAccount(new AccountModel("Key Bank Savings", 5000,
+                5738593, AccountModel.SAVINGS, 50, 400,
+                8000));
     }
 }

@@ -42,14 +42,14 @@ public class TransactionModel
         this.date = DateTime.now();
     }
 
-    public TransactionModel(String name, double amount, boolean isDeposit, AccountModel account)
+    public TransactionModel(String name, double amount, boolean isDeposit, AccountModel account, DateTime date)
     {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.amount = amount;
         this.isDeposit = isDeposit;
         this.account = account;
-        this.date = DateTime.now();
+        this.date = date;
     }
 
     //Getters

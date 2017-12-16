@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.joda.time.DateTime;
+
 import edu.chapman.cpsc356.spendingfriend.R;
 import edu.chapman.cpsc356.spendingfriend.collections.AccountCollection;
 import edu.chapman.cpsc356.spendingfriend.models.AccountModel;
@@ -16,6 +18,7 @@ import edu.chapman.cpsc356.spendingfriend.models.AccountModel;
 
 public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.SummaryViewHolder>
 {
+    private int month;
     @Override
     public SummaryViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
@@ -28,7 +31,7 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.SummaryV
     public void onBindViewHolder(SummaryViewHolder holder, int position)
     {
         AccountModel account = AccountCollection.GetInstance().getExtendedAccounts().get(position);
-        holder.setUp(account);
+        holder.setUp(account, month);
     }
 
     @Override
@@ -37,9 +40,13 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.SummaryV
         return AccountCollection.GetInstance().getExtendedAccounts().size();
     }
 
+    public int getMonth(){return this.month;}
+    public void setMonth(int month){this.month=month;}
+
     public class SummaryViewHolder extends RecyclerView.ViewHolder
     {
         private AccountModel account;
+        private int month;
         private TextView summaryHeaderTextView;
         private TextView monthlySpentTextView;
         private TextView monthlySpendingCapTextView;
@@ -66,56 +73,83 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.SummaryV
             this.differenceSavingsTextView = itemView.findViewById(R.id.tv_total_difference);
         }
 
-        public void setUp(AccountModel account)
+        public void setUp(AccountModel account, int month)
         {
             this.account = account;
+            this.month = month;
             this.summaryHeaderTextView.setText(account.getName());
 
             if (this.account.equals(AccountCollection.GetTotalAccount()))
             {
-                this.monthlySpentTextView.setText(Double.toString(AccountCollection.GetInstance().getTotalSpent()));
-                this.monthlyEarnedTextView.setText(Double.toString(AccountCollection.GetInstance().getTotalEarned()));
-                this.totalSavingsTextView.setText(Double.toString(AccountCollection.GetInstance().getCurrentTotalBalance()));
+                setUpMonthlySpent(AccountCollection.GetInstance().getTotalMonthSpent(this.month),
+                        AccountCollection.GetInstance().getTotalMonthSpendingCap(),
+                        AccountCollection.GetInstance().getTotalMonthSpentDiff(this.month));
+                setUpMonthlyEarned(AccountCollection.GetInstance().getTotalMonthEarned(this.month),
+                        AccountCollection.GetInstance().getTotalMonthIncomeGoal(),
+                        AccountCollection.GetInstance().getTotalMonthEarnedDiff(this.month));
+                setUpSavings(AccountCollection.GetInstance().getCurrentTotalBalance(),
+                        AccountCollection.GetInstance().getTotalSavingsGoal(),
+                        AccountCollection.GetInstance().getTotalSavingsDiff());
             }
             else
             {
-                this.monthlySpentTextView.setText(Double.toString(this.account.calcSpent()));
-                this.monthlySpendingCapTextView.setText(Double.toString(account.getMonthlySpendingCap()));
-
-                Double spentDiff = account.calcBudgetDiffSpent();
-                if (spentDiff > 0) {
-                    this.differenceSpentTextView.setText(writeOverBudgetMessage(spentDiff));
-                } else if (spentDiff < 0) {
-                    this.differenceSpentTextView.setText(writeUnderBudgetMessage(-spentDiff));
-                } else {
-                    this.differenceSpentTextView.setText(writeOnBudgetMessage());
-                }
-
-                this.monthlyEarnedTextView.setText(Double.toString(this.account.calcEarned()));
-                this.monthlyIncomeGoalTextView.setText(Double.toString(account.getMonthlyIncomeGoal()));
-
-                Double earnedDiff = this.account.calcBudgetDiffEarned();
-                if (earnedDiff > 0) {
-                    this.differenceEarnedTextView.setText(writeEarnedMoreMessage(earnedDiff));
-                } else if (earnedDiff < 0) {
-                    this.differenceEarnedTextView.setText(writeEarnedLessMessage(-earnedDiff));
-                } else {
-                    this.differenceEarnedTextView.setText(writeEarnedExactMessage());
-                }
-
-                this.totalSavingsTextView.setText(Double.toString(this.account.getCurrentBalance()));
-                this.totalSavingsGoalTextView.setText(Double.toString(account.getTotalSavingsGoal()));
-
-                Double savingsDiff = account.calcBudgetDiffSavings();
-                if (savingsDiff > 0) {
-                    this.differenceSavingsTextView.setText(writeMoreSavingsMessage(savingsDiff));
-                } else if (savingsDiff < 0) {
-                    this.differenceSavingsTextView.setText(writeLessSavingsMessage(-savingsDiff));
-                } else {
-                    this.differenceSavingsTextView.setText(writeExactSavingsMessage());
-                }
+                setUpMonthlySpent(this.account.calcMonthSpent(this.month),
+                        this.account.getMonthlySpendingCap(),
+                        this.account.calcMonthBudgetDiffSpent(this.month));
+                setUpMonthlyEarned(this.account.calcMonthEarned(this.month),
+                        this.account.getMonthlyIncomeGoal(),
+                        this.account.calcMonthBudgetDiffEarned(this.month));
+                setUpSavings(this.account.getCurrentBalance(),
+                        this.account.getTotalSavingsGoal(),
+                        this.account.calcBudgetDiffSavings());
             }
         }
+
+        public void setUpMonthlySpent(double spent, double cap, double spentDiff)
+        {
+            this.monthlySpentTextView.setText(Double.toString(spent));
+            this.monthlySpendingCapTextView.setText(Double.toString(cap));
+
+            if (spentDiff > 0) {
+                this.differenceSpentTextView.setText(writeOverBudgetMessage(spentDiff));
+            } else if (spentDiff < 0) {
+                this.differenceSpentTextView.setText(writeUnderBudgetMessage(-spentDiff));
+            } else {
+                this.differenceSpentTextView.setText(writeOnBudgetMessage());
+            }
+        }
+        public void setUpMonthlyEarned(double earned, double goal, double earnedDiff)
+        {
+            this.monthlyEarnedTextView.setText(Double.toString(earned));
+            this.monthlyIncomeGoalTextView.setText(Double.toString(goal));
+
+            if (earnedDiff > 0) {
+                this.differenceEarnedTextView.setText(writeEarnedMoreMessage(earnedDiff));
+            } else if (earnedDiff < 0) {
+                this.differenceEarnedTextView.setText(writeEarnedLessMessage(-earnedDiff));
+            } else {
+                this.differenceEarnedTextView.setText(writeEarnedExactMessage());
+            }
+        }
+
+        public void setUpSavings(double savings, double goal, double savingsDiff)
+        {
+            this.totalSavingsTextView.setText(Double.toString(savings));
+            this.totalSavingsGoalTextView.setText(Double.toString(goal));
+
+            if (savingsDiff > 0) {
+                this.differenceSavingsTextView.setText(writeMoreSavingsMessage(savingsDiff));
+            } else if (savingsDiff < 0) {
+                this.differenceSavingsTextView.setText(writeLessSavingsMessage(-savingsDiff));
+            } else {
+                this.differenceSavingsTextView.setText(writeExactSavingsMessage());
+            }
+        }
+
+
+
+
+        //Error Messages
 
         public String writeOverBudgetMessage(double amount)
         {

@@ -49,7 +49,7 @@ public class AccountFragment extends Fragment
         this.accountNameEditText.setText(account.getName());
 
         this.accountNumberEditText = v.findViewById(R.id.et_account_number);
-        this.accountNumberEditText.setText(Integer.toString(account.getNumber()));
+        this.accountNumberEditText.setText(Long.toString(account.getNumber()));
 
         this.accountStartingBalanceEditText = v.findViewById(R.id.et_account_starting_balance);
         this.accountStartingBalanceEditText.setText(Double.toString(account.getStartingBalance()));
@@ -102,9 +102,9 @@ public class AccountFragment extends Fragment
             @Override
             public void afterTextChanged(Editable editable)
             {
-                if (ParseHelper.tryParseInt(editable.toString()))
+                if (ParseHelper.tryParseLong(editable.toString()))
                 {
-                    account.setNumber(Integer.parseInt(editable.toString()));
+                    account.setNumber(Long.parseLong(editable.toString()));
                 }
                 else
                 {
@@ -168,7 +168,8 @@ public class AccountFragment extends Fragment
     //TODO: White Space in Titles?
     public boolean isValidAccountName()
     {
-        if (AccountCollection.isUniqueAccountName(account.getName(), account.getId()) && !account.getName().equals(""))
+        if (AccountCollection.isUniqueAccountName(account.getName(), account.getId()) &&
+                !account.getName().equals("") && !ParseHelper.AllWhiteSpace(account.getName()))
         {
             return true;
         }

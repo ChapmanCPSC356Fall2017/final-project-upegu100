@@ -17,7 +17,7 @@ public class AccountModel
     //Member Variables
     private String id;
     private String name;
-    private int number;
+    private long number;
     private int type;
     private double startingBalance;
     private double currentBalance;
@@ -52,12 +52,26 @@ public class AccountModel
         this.totalSavingsGoal = 0;
     }
 
+    public AccountModel(String name, double startingBalance, long number, int type,
+                        double monthlySpendingCap, double monthlyIncomeGoal, double totalSavingsGoal)
+    {
+        this.id = UUID.randomUUID().toString();
+        this.name = name;
+        this.startingBalance = startingBalance;
+        this.number = number;
+        this.type = type;
+        this.currentBalance = startingBalance;
+        this.monthlySpendingCap = monthlySpendingCap;
+        this.monthlyIncomeGoal = monthlyIncomeGoal;
+        this.totalSavingsGoal = totalSavingsGoal;
+    }
+
     //Getters
     public String getId() { return this.id; }
     public String getName() {
         return this.name;
     }
-    public int getNumber() {
+    public long getNumber() {
         return this.number;
     }
     public int getType() { return this.type; }
@@ -82,7 +96,7 @@ public class AccountModel
     public void setName(String name) {
         this.name = name;
     }
-    public void setNumber(int number) {
+    public void setNumber(long number) {
         this.number = number;
     }
     public void setType(int type) {
@@ -151,6 +165,20 @@ public class AccountModel
         return earned;
     }
 
+    public double calcMonthEarned(int month)
+    {
+        double earned = 0;
+        for (TransactionModel transaction : TransactionCollection.GetInstance().getTransactions())
+        {
+            if (transaction.getAccount().equals(this) & transaction.isDeposit() &&
+                    transaction.getDate().getMonthOfYear() == month)
+            {
+                earned += transaction.getAmount();
+            }
+        }
+        return earned;
+    }
+
     public double calcSpent()
     {
         double spent = 0;
@@ -164,14 +192,34 @@ public class AccountModel
         return spent;
     }
 
+    public double calcMonthSpent(int month)
+    {
+        double spent = 0;
+        for (TransactionModel transaction : TransactionCollection.GetInstance().getTransactions())
+        {
+            if (transaction.getAccount().equals(this) & transaction.isWithdrawal()
+                    && transaction.getDate().getMonthOfYear() == month)
+            {
+                spent += transaction.getAmount();
+            }
+        }
+        return spent;
+    }
+
     public double calcBudgetDiffSpent()
     {
         return (this.calcSpent() - this.monthlySpendingCap);
     }
+    public double calcMonthBudgetDiffSpent(int month) {return (this.calcMonthSpent(month) - this.monthlySpendingCap);}
 
     public double calcBudgetDiffEarned()
     {
         return (this.calcEarned() - this.getMonthlyIncomeGoal());
+    }
+
+    public double calcMonthBudgetDiffEarned(int month)
+    {
+        return (this.calcMonthEarned(month) - this.getMonthlyIncomeGoal());
     }
 
     public double calcBudgetDiffSavings()

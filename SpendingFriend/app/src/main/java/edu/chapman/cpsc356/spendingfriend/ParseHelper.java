@@ -33,6 +33,19 @@ public class ParseHelper
         }
     }
 
+    public static boolean tryParseLong(String s)
+    {
+        try
+        {
+            Long.parseLong(s);
+            return true;
+        }
+        catch (NumberFormatException e)
+        {
+            return false;
+        }
+    }
+
     public static boolean AllWhiteSpace(String s)
     {
         char[] sCharArray = s.toCharArray();
