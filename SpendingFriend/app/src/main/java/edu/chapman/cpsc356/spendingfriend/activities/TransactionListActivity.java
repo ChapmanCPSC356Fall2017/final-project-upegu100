@@ -2,8 +2,6 @@ package edu.chapman.cpsc356.spendingfriend.activities;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -44,6 +42,7 @@ public class TransactionListActivity extends SingleFragmentActivity
     {
         switch (item.getItemId())
         {
+            //Add Transaction
             case R.id.menu_add_transaction:
                 TransactionModel newTransaction = new TransactionModel();
                 TransactionCollection.GetInstance().getTransactions().add(newTransaction);

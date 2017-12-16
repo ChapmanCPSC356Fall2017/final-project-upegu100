@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import edu.chapman.cpsc356.spendingfriend.R;
 import edu.chapman.cpsc356.spendingfriend.fragments.TransactionFragment;
 
 public class TransactionActivity extends SingleFragmentActivity
@@ -26,27 +27,33 @@ public class TransactionActivity extends SingleFragmentActivity
     {
         switch (item.getItemId())
         {
+            //Home Button
             case android.R.id.home:
+                //Invalid Name
                 if(!this.transactionFragment.isValidTransactionName())
                 {
                     writeNameErrorMessage();
                     return true;
                 }
+                //Invalid Account Name
                 else if (!this.transactionFragment.isValidAccountName())
                 {
                     writeAccountErrorMessage();
                     return true;
                 }
+                //Invalid Transaction Date
                 else if (!this.transactionFragment.isValidTransactionDate())
                 {
                     writeInvalidDateErrorMessage();
                     return true;
                 }
+                //Future Date
                 else if (this.transactionFragment.getTransaction().getDate().isAfterNow())
                 {
                     writeFutureDateErrorMessage();
                     return true;
                 }
+                //No Errors
                 else
                 {
                     this.transactionFragment.getTransaction().getAccount().updateCurrentBalance();
@@ -61,49 +68,70 @@ public class TransactionActivity extends SingleFragmentActivity
     @Override
     public void onBackPressed()
     {
+        //Invalid Transaction Name
         if(!this.transactionFragment.isValidTransactionName())
         {
             writeNameErrorMessage();
         }
+        //Invalid Account Name
         else if (!this.transactionFragment.isValidAccountName())
         {
             writeAccountErrorMessage();
         }
+        //Invalid Transaction Date
         else if (!this.transactionFragment.isValidTransactionDate())
         {
             writeInvalidDateErrorMessage();
         }
+        //Future Date
         else if (this.transactionFragment.getTransaction().getDate().isAfterNow())
         {
             writeFutureDateErrorMessage();
         }
+        //No Errors
         else
         {
             this.transactionFragment.getTransaction().getAccount().updateCurrentBalance();
             super.onBackPressed();
         }
     }
-
-    //TODO: String Resources
-
+    /*
+    * writeFutureDateErrorMessage()
+    * Creates Toast for future date error
+    */
     public void writeFutureDateErrorMessage()
     {
-        Toast.makeText(this, "Yikes, you can see into the future! " +
-                "Your transaction date is later than today. Please keep us in the present " +
-                "and type a new one.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, getString(R.string.future_date_error_part_1) +
+                getString(R.string.future_date_error_part_2) +
+                getString(R.string.future_date_error_part_3), Toast.LENGTH_LONG).show();
     }
+
+    /*
+    * writeAccountErrorMessage()
+    * Creates Toast for invalid account name
+    */
     public void writeAccountErrorMessage()
     {
-        Toast.makeText(this, "Uh oh! The account you typed does not exist.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.account_name_error, Toast.LENGTH_SHORT).show();
     }
+
+    /*
+    * writeNameErrorMessage()
+    * Creates Toast for invalid transaction names
+    */
     public void writeNameErrorMessage()
     {
-        Toast.makeText(this, "Looks like you forgot to name you transaction!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.transcation_name_error, Toast.LENGTH_SHORT).show();
 
     }
+
+    /*
+    * writeInvalidDateErrorMessage()
+    * Creates Toast for dates not in 2017
+    */
     public void writeInvalidDateErrorMessage()
     {
-        Toast.makeText(this, "Your date is not from this year.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.wrong_year_error, Toast.LENGTH_SHORT).show();
 
     }
 }

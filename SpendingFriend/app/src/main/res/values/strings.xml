@@ -36,4 +36,10 @@
     <string name="delete_error_message_part_2">and therefore cannot be deleted.</string>
     <string name="invalid_name_error_message_part_1">Whoops! Your account name already exists or it is invalid.</string>
     <string name="invalid_name_error_message_part_2">Please try a new name.</string>
+    <string name="future_date_error_part_1">Yikes, you can see into the future!</string>
+    <string name="future_date_error_part_2">Your transaction date is later than today. Please keep us in the present</string>
+    <string name="future_date_error_part_3">and type a new one.</string>
+    <string name="account_name_error">Uh oh! The account you typed does not exist.</string>
+    <string name="transcation_name_error">Looks like you forgot to name you transaction!</string>
+    <string name="wrong_year_error">Your date is not from this year.</string>
 </resources>
