@@ -41,13 +41,17 @@ public class BudgetFragment extends Fragment
         View v = inflater.inflate(R.layout.fragment_budget, container, false);
 
         this.budgetName = v.findViewById(R.id.tv_budget_header);
+
+        //Total Account
         if (this.account.equals(AccountCollection.GetTotalAccount()))
         {
-            this.budgetName.setText("Total Budget for \nCombined Accounts");
+            this.budgetName.setText(R.string.total_combined_budget_header);
         }
+
+        //Any other Account
         else
         {
-            this.budgetName.setText("Budget for " + this.account.getName());
+            this.budgetName.setText(getString(R.string.budget_for) + this.account.getName());
         }
         this.monthlySpendingCapEditText = v.findViewById(R.id.et_monthly_spending_cap);
         this.monthlySpendingCapEditText.setText(MoneyFormat.format(this.account.getMonthlySpendingCap()));

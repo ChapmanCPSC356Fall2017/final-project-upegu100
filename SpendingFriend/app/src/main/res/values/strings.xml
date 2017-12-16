@@ -57,4 +57,6 @@
     <string name="less_savings_message_part_1">Sadly, you\'re $</string>
     <string name="less_savings_message_part_2">behind your savings goals this month.</string>
     <string name="exact_savings_message">A penny saved is a penny earned and you have saved the exact amount that you wanted!</string>
+    <string name="total_combined_budget_header">Total Budget for  Combined Accounts</string>
+    <string name="budget_for">Budget for</string>
 </resources>
