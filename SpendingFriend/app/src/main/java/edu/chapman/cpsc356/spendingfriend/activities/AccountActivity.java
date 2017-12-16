@@ -72,6 +72,21 @@ public class AccountActivity extends SingleFragmentActivity
         }
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        if (!this.accountFragment.isValidAccountName())
+        {
+            writeInvalidNameErrorMessage();
+        }
+        else
+        {
+            notify();
+            super.onBackPressed();
+
+        }
+    }
+
     public void writeInvalidNameErrorMessage()
     {
         Toast.makeText(this, "Whoops! Your account name already exists or it is invalid. " +

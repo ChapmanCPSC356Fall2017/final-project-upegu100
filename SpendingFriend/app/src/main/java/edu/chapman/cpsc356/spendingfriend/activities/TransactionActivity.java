@@ -83,6 +83,7 @@ public class TransactionActivity extends SingleFragmentActivity
         else
         {
             this.transactionFragment.getTransaction().getAccount().updateCurrentBalance();
+            notify();
             super.onBackPressed();
         }
     }
