@@ -22,6 +22,18 @@
             tools:text="@string/account_name"
             android:gravity="center"/>
 
+        <TextView
+            android:id="@+id/tv_cash"
+            android:layout_width="300dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:visibility="invisible"
+            android:text="@string/cash"/>
+
         <EditText
             android:id="@+id/et_account_number"
             android:layout_below="@+id/et_frag_account_name"

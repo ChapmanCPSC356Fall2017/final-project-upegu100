@@ -28,8 +28,11 @@ public class AccountActivity extends SingleFragmentActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.activity_account, menu);
+        if (!accountFragment.getAccount().equals(AccountCollection.GetCashAccount()))
+        {
+            MenuInflater menuInflater = getMenuInflater();
+            menuInflater.inflate(R.menu.activity_account, menu);
+        }
         return super.onCreateOptionsMenu(menu);
     }
 

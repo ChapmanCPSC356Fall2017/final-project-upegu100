@@ -29,6 +29,8 @@ public class AccountFragment extends Fragment
     private TextView accountCurrentBalanceTextView;
     private RadioButton checkingRadioButton;
     private RadioButton savingsRadioButton;
+    private TextView accountTypeTextView;
+    private TextView cashTextView;
 
     public AccountModel getAccount() { return this.account; }
 
@@ -47,117 +49,119 @@ public class AccountFragment extends Fragment
         View v = inflater.inflate(R.layout.fragment_account, container, false);
 
         this.accountNameEditText = v.findViewById(R.id.et_frag_account_name);
-        this.accountNameEditText.setText(account.getName());
-
         this.accountNumberEditText = v.findViewById(R.id.et_account_number);
-        this.accountNumberEditText.setText(Long.toString(account.getNumber()));
-
         this.accountStartingBalanceEditText = v.findViewById(R.id.et_account_starting_balance);
-        this.accountStartingBalanceEditText.setText(MoneyFormat.format(account.getStartingBalance()));
-
         this.accountCurrentBalanceTextView = v.findViewById(R.id.et_account_current_balance);
-        this.accountCurrentBalanceTextView.setText(MoneyFormat.format(this.account.getCurrentBalance()));
-
         this.checkingRadioButton = v.findViewById(R.id.rb_checking);
         this.savingsRadioButton = v.findViewById(R.id.rb_savings);
+        this.accountTypeTextView = v.findViewById(R.id.tv_account_type);
+        this.cashTextView = v.findViewById(R.id.tv_cash);
 
-        if (account.getType() == AccountModel.CHECKING)
+        this.accountStartingBalanceEditText.setText(MoneyFormat.format(account.getStartingBalance()));
+        this.accountCurrentBalanceTextView.setText(MoneyFormat.format(this.account.getCurrentBalance()));
+
+        if (this.account.equals(AccountCollection.GetCashAccount()))
         {
-            this.checkingRadioButton.setChecked(true);
+            this.cashTextView.setVisibility(View.VISIBLE);
+            this.accountNameEditText.setVisibility(View.INVISIBLE);
+            this.accountNumberEditText.setVisibility(View.INVISIBLE);
+            this.checkingRadioButton.setVisibility(View.INVISIBLE);
+            this.savingsRadioButton.setVisibility(View.INVISIBLE);
+            this.accountTypeTextView.setVisibility(View.INVISIBLE);
         }
         else
         {
-            this.savingsRadioButton.setChecked(true);
+            this.cashTextView.setVisibility(View.INVISIBLE);
+            this.accountNameEditText.setVisibility(View.VISIBLE);
+            this.accountNumberEditText.setVisibility(View.VISIBLE);
+            this.checkingRadioButton.setVisibility(View.VISIBLE);
+            this.savingsRadioButton.setVisibility(View.VISIBLE);
+            this.accountTypeTextView.setVisibility(View.VISIBLE);
+
+
+            this.accountNameEditText.setText(account.getName());
+            this.accountNumberEditText.setText(Long.toString(account.getNumber()));
+
+            if (account.getType() == AccountModel.CHECKING) {
+                this.checkingRadioButton.setChecked(true);
+            } else {
+                this.savingsRadioButton.setChecked(true);
+            }
+
+            this.accountNameEditText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    account.setName(editable.toString());
+                }
+            });
+
+            this.accountNumberEditText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    if (ParseHelper.tryParseLong(editable.toString())) {
+                        account.setNumber(Long.parseLong(editable.toString()));
+                    } else {
+                        account.setNumber(0);
+                    }
+                }
+            });
+
+            this.accountStartingBalanceEditText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+
+                    MoneyFormat.preventExtraDecimalNumbers(editable);
+                    if (ParseHelper.tryParseDouble(editable.toString())) {
+                        account.setStartingBalance(Double.parseDouble(editable.toString()));
+                    } else {
+                        account.setStartingBalance(0);
+                    }
+                }
+            });
+
+            this.checkingRadioButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    account.setType(AccountModel.CHECKING);
+                }
+            });
+            this.savingsRadioButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    account.setType(AccountModel.SAVINGS);
+                }
+            });
         }
-
-        this.accountNameEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable)
-            {
-                account.setName(editable.toString());
-            }
-        });
-
-        this.accountNumberEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable)
-            {
-                if (ParseHelper.tryParseLong(editable.toString()))
-                {
-                    account.setNumber(Long.parseLong(editable.toString()));
-                }
-                else
-                {
-                    account.setNumber(0);
-                }
-            }
-        });
-
-        this.accountStartingBalanceEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)
-            {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable)
-            {
-
-                MoneyFormat.preventExtraDecimalNumbers(editable);
-                if (ParseHelper.tryParseDouble(editable.toString()))
-                {
-                    account.setStartingBalance(Double.parseDouble(editable.toString()));
-                }
-                else
-                {
-                    account.setStartingBalance(0);
-                }
-            }
-        });
-
-        this.checkingRadioButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                account.setType(AccountModel.CHECKING);
-            }
-        });
-        this.savingsRadioButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                account.setType(AccountModel.SAVINGS);
-            }
-        });
-
         return v;
     }
 

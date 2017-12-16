@@ -102,7 +102,11 @@ public class AccountModel
     public void setType(int type) {
         this.type = type;
     }
-    public void setStartingBalance(double startingBalance){this.startingBalance = startingBalance;}
+    public void setStartingBalance(double startingBalance)
+    {
+        this.startingBalance = startingBalance;
+        updateCurrentBalance();
+    }
     public void setCurrentBalance(double currentBalance) {this.currentBalance = currentBalance;}
     public void setAmount(double currentBalance) {this.currentBalance = currentBalance;}
     public void setMonthlySpendingCap(double monthlySpendingCap) {this.monthlySpendingCap = monthlySpendingCap;}
