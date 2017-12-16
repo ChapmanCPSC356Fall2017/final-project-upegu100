@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import org.joda.time.DateTime;
 
 import edu.chapman.cpsc356.spendingfriend.MoneyFormat;
@@ -62,6 +61,8 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.SummaryV
         public SummaryViewHolder(View itemView)
         {
             super(itemView);
+
+            //Initialize Text Views
             this.summaryHeaderTextView = itemView.findViewById(R.id.tv_summary_header);
             this.monthlySpentTextView = itemView.findViewById(R.id.tv_monthly_spent);
             this.monthlySpendingCapTextView = itemView.findViewById(R.id.tv_monthly_cap);
@@ -80,6 +81,7 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.SummaryV
             this.month = month;
             this.summaryHeaderTextView.setText(account.getName());
 
+            //Sets up Total Account
             if (this.account.equals(AccountCollection.GetTotalAccount()))
             {
                 setUpMonthlySpent(AccountCollection.GetInstance().getTotalMonthSpent(this.month),
@@ -92,6 +94,7 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.SummaryV
                         AccountCollection.GetInstance().getTotalSavingsGoal(),
                         AccountCollection.GetInstance().getTotalSavingsDiff());
             }
+            //Sets up any other monthly Account
             else
             {
                 setUpMonthlySpent(this.account.calcMonthSpent(this.month),
@@ -105,11 +108,13 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.SummaryV
                         this.account.calcBudgetDiffSavings());
             }
         }
-
+        //setUpMonthlySpent() method
         public void setUpMonthlySpent(double spent, double cap, double spentDiff)
         {
-            this.monthlySpentTextView.setText(MoneyFormat.format(spent));
-            this.monthlySpendingCapTextView.setText(MoneyFormat.format(cap));
+            this.monthlySpentTextView.setText(monthlySpentTextView.getContext().getString(R.string.dollar_symbol)
+                    + MoneyFormat.format(spent));
+            this.monthlySpendingCapTextView.setText(monthlySpentTextView.getContext().getString(R.string.dollar_symbol)
+                    + MoneyFormat.format(cap));
 
             if (spentDiff > 0) {
                 this.differenceSpentTextView.setText(writeOverBudgetMessage(spentDiff));
@@ -119,10 +124,13 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.SummaryV
                 this.differenceSpentTextView.setText(writeOnBudgetMessage());
             }
         }
+        //setUpMonthlyEarned() method
         public void setUpMonthlyEarned(double earned, double goal, double earnedDiff)
         {
-            this.monthlyEarnedTextView.setText(MoneyFormat.format(earned));
-            this.monthlyIncomeGoalTextView.setText(MoneyFormat.format(goal));
+            this.monthlyEarnedTextView.setText(monthlySpentTextView.getContext().getString(R.string.dollar_symbol)
+                    + MoneyFormat.format(earned));
+            this.monthlyIncomeGoalTextView.setText(monthlySpentTextView.getContext().getString(R.string.dollar_symbol)
+                    + MoneyFormat.format(goal));
 
             if (earnedDiff > 0) {
                 this.differenceEarnedTextView.setText(writeEarnedMoreMessage(earnedDiff));
@@ -133,10 +141,13 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.SummaryV
             }
         }
 
+        //setUpSavings
         public void setUpSavings(double savings, double goal, double savingsDiff)
         {
-            this.totalSavingsTextView.setText(MoneyFormat.format(savings));
-            this.totalSavingsGoalTextView.setText(MoneyFormat.format(goal));
+            this.totalSavingsTextView.setText(monthlySpentTextView.getContext().getString(R.string.dollar_symbol)
+                    + MoneyFormat.format(savings));
+            this.totalSavingsGoalTextView.setText(monthlySpentTextView.getContext().getString(R.string.dollar_symbol)
+                    + MoneyFormat.format(goal));
 
             if (savingsDiff > 0) {
                 this.differenceSavingsTextView.setText(writeMoreSavingsMessage(savingsDiff));
@@ -147,52 +158,56 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.SummaryV
             }
         }
 
-
         //Error Messages
-
         public String writeOverBudgetMessage(double amount)
         {
-            return "Uh oh, you are currently $" + amount + " over budget.";
+            return itemView.getContext().getString(R.string.over_budget_message_part_1) + amount + 
+                    itemView.getContext().getString(R.string.over_budget_message_part_2);
         }
 
         public String writeUnderBudgetMessage(double amount)
         {
-            return "You are currently $" + amount + " under budget. Keep it up!";
+            return itemView.getContext().getString(R.string.under_budget_message_part_1) + amount +
+                    itemView.getContext().getString(R.string.under_budget_message_part_2);
         }
 
         public String writeOnBudgetMessage()
         {
-            return "Talk about being exact, you are right on your budget. Good job!";
+            return itemView.getContext().getString(R.string.on_budget_message);
         }
 
         public String writeEarnedMoreMessage(double amount)
         {
-            return "Look at you, you've earned $" + amount + " more than your goal!";
+            return itemView.getContext().getString(R.string.earned_more_message_part_1) + amount
+                    + itemView.getContext().getString(R.string.earned_more_message_part_2);
         }
 
         public String writeEarnedLessMessage(double amount)
         {
-            return "Oh no, you are $" + amount + " behind your income goal";
+            return itemView.getContext().getString(R.string.earned_less_message_part_1) + amount
+                    + itemView.getContext().getString(R.string.earned_less_message_part_2);
         }
 
         public String writeEarnedExactMessage()
         {
-            return "Well fancy that, you earned exactly what you wanted to!";
+            return itemView.getContext().getString(R.string.earned_exact_message);
         }
 
         public String writeMoreSavingsMessage(double amount)
         {
-            return "How cool is that, you have saved $" + amount + " more than you planned.";
+            return itemView.getContext().getString(R.string.more_savings_message_part_1) + amount
+                    + itemView.getContext().getString(R.string.more_savings_message_part_2);
         }
 
         public String writeLessSavingsMessage(double amount)
         {
-            return "Sadly, you're $" + amount + " behind your savings goals this month.";
+            return itemView.getContext().getString(R.string.less_savings_message_part_1) + amount
+                    + itemView.getContext().getString(R.string.less_savings_message_part_2);
         }
 
         public String writeExactSavingsMessage()
         {
-            return "A penny saved is a penny earned and you have saved the exact amount that you wanted!";
+            return itemView.getContext().getString(R.string.exact_savings_message);
         }
 
     }

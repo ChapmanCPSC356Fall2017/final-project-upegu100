@@ -42,4 +42,19 @@
     <string name="account_name_error">Uh oh! The account you typed does not exist.</string>
     <string name="transcation_name_error">Looks like you forgot to name you transaction!</string>
     <string name="wrong_year_error">Your date is not from this year.</string>
+    <string name="over_budget_message_part_1">Uh oh, you are currently $</string>
+    <string name="over_budget_message_part_2">over budget.</string>
+    <string name="under_budget_message_part_1">You are currently $</string>
+    <string name="under_budget_message_part_2">under budget. Keep it up!</string>
+    <string name="on_budget_message">Talk about being exact, you are right on your budget. Good job!</string>
+    <string name="earned_more_message_part_1">Look at you, you\'ve earned $</string>
+    <string name="earned_more_message_part_2">more than your goal!</string>
+    <string name="earned_less_message_part_1">Oh no, you are $</string>
+    <string name="earned_less_message_part_2">behind your income goal</string>
+    <string name="earned_exact_message">Well fancy that, you earned exactly what you wanted to!</string>
+    <string name="more_savings_message_part_1">How cool is that, you have saved $</string>
+    <string name="more_savings_message_part_2">more than you planned.</string>
+    <string name="less_savings_message_part_1">Sadly, you\'re $</string>
+    <string name="less_savings_message_part_2">behind your savings goals this month.</string>
+    <string name="exact_savings_message">A penny saved is a penny earned and you have saved the exact amount that you wanted!</string>
 </resources>
