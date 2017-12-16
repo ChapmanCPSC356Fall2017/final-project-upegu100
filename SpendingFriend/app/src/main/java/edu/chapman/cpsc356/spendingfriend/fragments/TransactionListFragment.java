@@ -18,6 +18,7 @@ import edu.chapman.cpsc356.spendingfriend.adapters.TransactionListAdapter;
 public class TransactionListFragment extends Fragment
 {
     private TransactionListAdapter transactionListAdapter;
+    public TransactionListAdapter getTransactionListAdapter() {return this.transactionListAdapter;}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

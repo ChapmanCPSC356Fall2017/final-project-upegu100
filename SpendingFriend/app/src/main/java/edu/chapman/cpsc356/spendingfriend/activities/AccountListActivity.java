@@ -22,6 +22,13 @@ public class AccountListActivity extends SingleFragmentActivity {
     }
 
     @Override
+    protected void onResume()
+    {
+        this.accountListFragment.getAccountListAdapter().notifyDataSetChanged();
+        super.onResume();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
         MenuInflater menuInflater = getMenuInflater();

@@ -25,6 +25,13 @@ public class TransactionListActivity extends SingleFragmentActivity
     }
 
     @Override
+    protected void onResume()
+    {
+        transactionListFragment.getTransactionListAdapter().notifyDataSetChanged();
+        super.onResume();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
         MenuInflater menuInflater = getMenuInflater();

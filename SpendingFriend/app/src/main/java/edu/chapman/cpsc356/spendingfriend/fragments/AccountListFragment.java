@@ -16,6 +16,7 @@ import edu.chapman.cpsc356.spendingfriend.adapters.AccountListAdapter;
 public class AccountListFragment extends Fragment
 {
     private AccountListAdapter accountListAdapter;
+    public AccountListAdapter getAccountListAdapter() {return  this.accountListAdapter;}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

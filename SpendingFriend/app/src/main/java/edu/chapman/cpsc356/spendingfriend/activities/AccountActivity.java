@@ -81,9 +81,7 @@ public class AccountActivity extends SingleFragmentActivity
         }
         else
         {
-            notify();
             super.onBackPressed();
-
         }
     }
 
