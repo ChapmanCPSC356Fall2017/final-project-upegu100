@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import edu.chapman.cpsc356.spendingfriend.MoneyFormat;
 import edu.chapman.cpsc356.spendingfriend.ParseHelper;
 import edu.chapman.cpsc356.spendingfriend.R;
 import edu.chapman.cpsc356.spendingfriend.activities.AccountActivity;
@@ -52,11 +53,10 @@ public class AccountFragment extends Fragment
         this.accountNumberEditText.setText(Long.toString(account.getNumber()));
 
         this.accountStartingBalanceEditText = v.findViewById(R.id.et_account_starting_balance);
-        this.accountStartingBalanceEditText.setText(Double.toString(account.getStartingBalance()));
+        this.accountStartingBalanceEditText.setText(MoneyFormat.format(account.getStartingBalance()));
 
         this.accountCurrentBalanceTextView = v.findViewById(R.id.et_account_current_balance);
-        this.account.updateCurrentBalance();
-        this.accountCurrentBalanceTextView.setText(Double.toString(this.account.getCurrentBalance()));
+        this.accountCurrentBalanceTextView.setText(MoneyFormat.format(this.account.getCurrentBalance()));
 
         this.checkingRadioButton = v.findViewById(R.id.rb_checking);
         this.savingsRadioButton = v.findViewById(R.id.rb_savings);
@@ -129,12 +129,8 @@ public class AccountFragment extends Fragment
             public void afterTextChanged(Editable editable)
             {
 
-                if (editable.toString().indexOf('.') != -1 && editable.toString().indexOf('.') == editable.length() - 4) //Not a valid price format
-                {
-                    editable.replace(0, editable.length(), editable.subSequence(0,editable.length()-1));
-                    account.setStartingBalance(Double.parseDouble(editable.toString()));
-                }
-                else if (ParseHelper.tryParseDouble(editable.toString()))
+                MoneyFormat.preventExtraDecimalNumbers(editable);
+                if (ParseHelper.tryParseDouble(editable.toString()))
                 {
                     account.setStartingBalance(Double.parseDouble(editable.toString()));
                 }

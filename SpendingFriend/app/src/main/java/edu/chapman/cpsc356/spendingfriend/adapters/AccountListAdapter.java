@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import edu.chapman.cpsc356.spendingfriend.MoneyFormat;
 import edu.chapman.cpsc356.spendingfriend.R;
 import edu.chapman.cpsc356.spendingfriend.activities.AccountActivity;
 import edu.chapman.cpsc356.spendingfriend.collections.AccountCollection;
@@ -59,7 +60,7 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
             this.account = account;
             this.accountNameTextView.setText(account.getName());
             this.account.updateCurrentBalance();
-            this.accountCurrentBalanceTextView.setText("$" + Double.toString(account.getCurrentBalance()));
+            this.accountCurrentBalanceTextView.setText("$" + MoneyFormat.format(account.getCurrentBalance()));
         }
 
         @Override

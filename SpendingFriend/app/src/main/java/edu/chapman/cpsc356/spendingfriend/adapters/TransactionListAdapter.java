@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import edu.chapman.cpsc356.spendingfriend.MoneyFormat;
 import edu.chapman.cpsc356.spendingfriend.R;
 import edu.chapman.cpsc356.spendingfriend.activities.TransactionActivity;
 import edu.chapman.cpsc356.spendingfriend.collections.TransactionCollection;
@@ -68,7 +69,7 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
         {
             this.transaction = transaction;
             this.transactionNameTextView.setText(transaction.getName());
-            this.transactionAmountTextView.setText(Double.toString(transaction.getAmount()));
+            this.transactionAmountTextView.setText(MoneyFormat.format(transaction.getAmount()));
         }
 
         @Override

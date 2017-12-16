@@ -1,5 +1,7 @@
 package edu.chapman.cpsc356.spendingfriend;
 
+import android.text.Editable;
+
 import java.text.DecimalFormat;
 
 /**
@@ -8,13 +10,19 @@ import java.text.DecimalFormat;
 
 public class MoneyFormat
 {
-    private static DecimalFormat MONEY_FORMAT = new DecimalFormat("0.00");
-    private static String FORMATTED_VALUE = "0.00";
-    private static String s;
-
-    public static String format(String s)
+    private static DecimalFormat MONEY_FORMAT =  new DecimalFormat("0.00");
+    public static String format(double moneyAmount)
     {
-        return MONEY_FORMAT.format(s);
+        return MONEY_FORMAT.format(moneyAmount);
+    }
+
+    public static void preventExtraDecimalNumbers(Editable editable)
+    {
+        if (editable.toString().indexOf('.') > -1 &&
+                editable.toString().indexOf('.') == editable.length() - 4) //Not a valid price format
+        {
+            editable.replace(0, editable.length(), editable.subSequence(0,editable.length()-1));
+        }
     }
 
     public static String moveDecimalLeft(String decimalNumber)
@@ -71,13 +79,6 @@ public class MoneyFormat
                 return firstHalf + middleNumber + "." + secondHalf;
             }
         }
-
         return decimalNumber;
-    }
-    //TODO: Delete this method
-    public static String test(String s)
-    {
-        MoneyFormat.s = s;
-        return s.substring(0,2);
     }
 }

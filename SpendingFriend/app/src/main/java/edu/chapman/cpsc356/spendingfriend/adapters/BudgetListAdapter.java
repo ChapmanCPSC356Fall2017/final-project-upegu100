@@ -31,14 +31,14 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Bu
     @Override
     public void onBindViewHolder(BudgetViewHolder holder, int position)
     {
-        AccountModel account = AccountCollection.GetInstance().getExtendedAccounts().get(position);
+        AccountModel account = AccountCollection.GetInstance().getAccounts().get(position);
         holder.setUp(account);
     }
 
     @Override
     public int getItemCount()
     {
-        return AccountCollection.GetInstance().getExtendedAccounts().size();
+        return AccountCollection.GetInstance().getAccounts().size();
     }
 
     public class BudgetViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener

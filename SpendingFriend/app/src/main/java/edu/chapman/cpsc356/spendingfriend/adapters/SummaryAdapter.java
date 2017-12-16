@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import org.joda.time.DateTime;
 
+import edu.chapman.cpsc356.spendingfriend.MoneyFormat;
 import edu.chapman.cpsc356.spendingfriend.R;
 import edu.chapman.cpsc356.spendingfriend.collections.AccountCollection;
 import edu.chapman.cpsc356.spendingfriend.models.AccountModel;
@@ -107,8 +108,8 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.SummaryV
 
         public void setUpMonthlySpent(double spent, double cap, double spentDiff)
         {
-            this.monthlySpentTextView.setText(Double.toString(spent));
-            this.monthlySpendingCapTextView.setText(Double.toString(cap));
+            this.monthlySpentTextView.setText(MoneyFormat.format(spent));
+            this.monthlySpendingCapTextView.setText(MoneyFormat.format(cap));
 
             if (spentDiff > 0) {
                 this.differenceSpentTextView.setText(writeOverBudgetMessage(spentDiff));
@@ -120,8 +121,8 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.SummaryV
         }
         public void setUpMonthlyEarned(double earned, double goal, double earnedDiff)
         {
-            this.monthlyEarnedTextView.setText(Double.toString(earned));
-            this.monthlyIncomeGoalTextView.setText(Double.toString(goal));
+            this.monthlyEarnedTextView.setText(MoneyFormat.format(earned));
+            this.monthlyIncomeGoalTextView.setText(MoneyFormat.format(goal));
 
             if (earnedDiff > 0) {
                 this.differenceEarnedTextView.setText(writeEarnedMoreMessage(earnedDiff));
@@ -134,8 +135,8 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.SummaryV
 
         public void setUpSavings(double savings, double goal, double savingsDiff)
         {
-            this.totalSavingsTextView.setText(Double.toString(savings));
-            this.totalSavingsGoalTextView.setText(Double.toString(goal));
+            this.totalSavingsTextView.setText(MoneyFormat.format(savings));
+            this.totalSavingsGoalTextView.setText(MoneyFormat.format(goal));
 
             if (savingsDiff > 0) {
                 this.differenceSavingsTextView.setText(writeMoreSavingsMessage(savingsDiff));

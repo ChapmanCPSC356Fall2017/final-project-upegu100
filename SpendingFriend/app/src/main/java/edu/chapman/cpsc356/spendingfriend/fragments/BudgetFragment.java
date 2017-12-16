@@ -4,12 +4,16 @@ package edu.chapman.cpsc356.spendingfriend.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import edu.chapman.cpsc356.spendingfriend.MoneyFormat;
+import edu.chapman.cpsc356.spendingfriend.ParseHelper;
 import edu.chapman.cpsc356.spendingfriend.R;
 import edu.chapman.cpsc356.spendingfriend.activities.BudgetActivity;
 import edu.chapman.cpsc356.spendingfriend.collections.AccountCollection;
@@ -46,13 +50,91 @@ public class BudgetFragment extends Fragment
             this.budgetName.setText("Budget for " + this.account.getName());
         }
         this.monthlySpendingCapEditText = v.findViewById(R.id.et_monthly_spending_cap);
-        this.monthlySpendingCapEditText.setText(Double.toString(this.account.getMonthlySpendingCap()));
+        this.monthlySpendingCapEditText.setText(MoneyFormat.format(this.account.getMonthlySpendingCap()));
 
         this.monthlyIncomeGoalEditText = v.findViewById(R.id.et_monthly_income_goal);
-        this.monthlyIncomeGoalEditText.setText(Double.toString(this.account.getMonthlyIncomeGoal()));
+        this.monthlyIncomeGoalEditText.setText(MoneyFormat.format(this.account.getMonthlyIncomeGoal()));
 
         this.totalSavingsGoal = v.findViewById(R.id.et_total_savings_goal);
-        this.totalSavingsGoal.setText(Double.toString(this.account.getTotalSavingsGoal()));
+        this.totalSavingsGoal.setText(MoneyFormat.format(this.account.getTotalSavingsGoal()));
+
+        this.monthlySpendingCapEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable)
+            {
+                MoneyFormat.preventExtraDecimalNumbers(editable);
+                if (ParseHelper.tryParseDouble(editable.toString()))
+                {
+                    account.setMonthlySpendingCap(Double.parseDouble(editable.toString()));
+                }
+                else
+                {
+                    account.setMonthlySpendingCap(0);
+                }
+            }
+        });
+
+        this.monthlyIncomeGoalEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable)
+            {
+                MoneyFormat.preventExtraDecimalNumbers(editable);
+                if (ParseHelper.tryParseDouble(editable.toString()))
+                {
+                    account.setMonthlyIncomeGoal(Double.parseDouble(editable.toString()));
+                }
+                else
+                {
+                    account.setMonthlyIncomeGoal(0);
+                }
+            }
+        });
+
+        this.totalSavingsGoal.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable)
+            {
+                MoneyFormat.preventExtraDecimalNumbers(editable);
+                if (ParseHelper.tryParseDouble(editable.toString()))
+                {
+                    account.setTotalSavingsGoal(Double.parseDouble(editable.toString()));
+                }
+                else
+                {
+                    account.setTotalSavingsGoal(0);
+                }
+            }
+        });
 
         return v;
     }
