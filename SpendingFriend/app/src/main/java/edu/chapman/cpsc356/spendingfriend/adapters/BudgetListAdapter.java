@@ -11,7 +11,6 @@ import edu.chapman.cpsc356.spendingfriend.R;
 import edu.chapman.cpsc356.spendingfriend.activities.BudgetActivity;
 import edu.chapman.cpsc356.spendingfriend.collections.AccountCollection;
 import edu.chapman.cpsc356.spendingfriend.models.AccountModel;
-import edu.chapman.cpsc356.spendingfriend.models.BudgetModel;
 
 /**
  * Created by Nadiya on 12/13/2017.

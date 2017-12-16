@@ -2,6 +2,7 @@ package edu.chapman.cpsc356.spendingfriend;
 
 /**
  * Created by Nadiya on 12/11/2017.
+ * Helps with parsing Strings from EditText
  */
 
 public class ParseHelper

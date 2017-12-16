@@ -4,8 +4,9 @@ import android.text.Editable;
 
 import java.text.DecimalFormat;
 
-/**
+/*
  * Created by Nadiya on 12/11/2017.
+ * Helps to format money decimals correctly
  */
 
 public class MoneyFormat
