@@ -56,12 +56,14 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
             this.accountCurrentBalanceTextView = itemView.findViewById(R.id.tv_cell_account_balance);
         }
 
+        /* setUp Method */
         public void setUp(AccountModel account)
         {
             this.account = account;
             this.accountNameTextView.setText(account.getName());
             this.account.updateCurrentBalance();
-            this.accountCurrentBalanceTextView.setText("$" + MoneyFormat.format(account.getCurrentBalance()));
+            this.accountCurrentBalanceTextView.setText(accountCurrentBalanceTextView
+                    .getContext().getString(R.string.dollar_symbol) + MoneyFormat.format(account.getCurrentBalance()));
             if (this.account.getCurrentBalance() > 0)
             {
                 this.accountCurrentBalanceTextView.setTextColor(ContextCompat
