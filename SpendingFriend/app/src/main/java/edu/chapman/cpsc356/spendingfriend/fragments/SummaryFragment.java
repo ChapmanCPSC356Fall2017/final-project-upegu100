@@ -46,6 +46,7 @@ public class SummaryFragment extends Fragment
 
         summaryListView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        //Set up month buttons
         this.janButton = v.findViewById(R.id.btn_jan);
         this.febButton = v.findViewById(R.id.btn_feb);
         this.marButton = v.findViewById(R.id.btn_mar);
@@ -157,6 +158,7 @@ public class SummaryFragment extends Fragment
         return v;
     }
 
+    //monthStringToInt() method
     public int monthStringToInt(String s)
     {
         if (s.equals("Jan"))
@@ -209,6 +211,7 @@ public class SummaryFragment extends Fragment
         }
     }
 
+    //OnButtonClick() method
     public void onButtonClick(String sMonth)
     {
         summaryAdapter.setMonth(monthStringToInt(sMonth));
