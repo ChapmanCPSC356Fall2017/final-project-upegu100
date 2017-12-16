@@ -60,6 +60,7 @@ public class AccountFragment extends Fragment
         this.accountStartingBalanceEditText.setText(MoneyFormat.format(account.getStartingBalance()));
         this.accountCurrentBalanceTextView.setText(MoneyFormat.format(this.account.getCurrentBalance()));
 
+        //Cash Account
         if (this.account.equals(AccountCollection.GetCashAccount()))
         {
             this.cashTextView.setVisibility(View.VISIBLE);
@@ -69,6 +70,7 @@ public class AccountFragment extends Fragment
             this.savingsRadioButton.setVisibility(View.INVISIBLE);
             this.accountTypeTextView.setVisibility(View.INVISIBLE);
         }
+        //Any other account
         else
         {
             this.cashTextView.setVisibility(View.INVISIBLE);
@@ -78,10 +80,11 @@ public class AccountFragment extends Fragment
             this.savingsRadioButton.setVisibility(View.VISIBLE);
             this.accountTypeTextView.setVisibility(View.VISIBLE);
 
-
+            //Set Account Name
             this.accountNameEditText.setText(account.getName());
             this.accountNumberEditText.setText(Long.toString(account.getNumber()));
 
+            //Set Account type
             if (account.getType() == AccountModel.CHECKING) {
                 this.checkingRadioButton.setChecked(true);
             } else {
@@ -166,7 +169,9 @@ public class AccountFragment extends Fragment
         return v;
     }
 
-    //TODO: White Space in Titles?
+    /*isValidAccountName()
+    * Ensures Account name is not all white space, non empty and unique
+    */
     public boolean isValidAccountName()
     {
         if (AccountCollection.isUniqueAccountName(account.getName(), account.getId()) &&
