@@ -1,5 +1,8 @@
 package edu.chapman.cpsc356.spendingfriend.activities;
 
+import android.app.AlertDialog;
+import android.app.SearchManager;
+import android.content.DialogInterface;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -57,6 +60,33 @@ public class TransactionActivity extends SingleFragmentActivity
                 return false;
         }
     }
+
+    @Override
+    public void onBackPressed()
+    {
+        if(!this.transactionFragment.isValidTransactionName())
+        {
+            writeNameErrorMessage();
+        }
+        else if (!this.transactionFragment.isValidAccountName())
+        {
+            writeAccountErrorMessage();
+        }
+        else if (!this.transactionFragment.isValidTransactionDate())
+        {
+            writeInvalidDateErrorMessage();
+        }
+        else if (this.transactionFragment.getTransaction().getDate().isAfterNow())
+        {
+            writeFutureDateErrorMessage();
+        }
+        else
+        {
+            this.transactionFragment.getTransaction().getAccount().updateCurrentBalance();
+            super.onBackPressed();
+        }
+    }
+
     //TODO: String Resources
 
     public void writeFutureDateErrorMessage()

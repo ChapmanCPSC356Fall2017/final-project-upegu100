@@ -126,7 +126,7 @@ public class AccountFragment extends Fragment
                 }
             });
         }
-        
+
         this.accountStartingBalanceEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
