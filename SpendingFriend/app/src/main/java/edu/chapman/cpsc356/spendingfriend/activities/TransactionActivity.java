@@ -1,12 +1,10 @@
 package edu.chapman.cpsc356.spendingfriend.activities;
 
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import edu.chapman.cpsc356.spendingfriend.R;
 import edu.chapman.cpsc356.spendingfriend.fragments.TransactionFragment;
 
 public class TransactionActivity extends SingleFragmentActivity
@@ -34,14 +32,19 @@ public class TransactionActivity extends SingleFragmentActivity
                     writeNameErrorMessage();
                     return true;
                 }
-                if (!this.transactionFragment.isValidAccountName())
+                else if (!this.transactionFragment.isValidAccountName())
                 {
                     writeAccountErrorMessage();
                     return true;
                 }
-                else if (this.transactionFragment.getTransaction().getDate().isAfterNow())
+                else if (!this.transactionFragment.isValidTransactionDate())
                 {
                     writeInvalidDateErrorMessage();
+                    return true;
+                }
+                else if (this.transactionFragment.getTransaction().getDate().isAfterNow())
+                {
+                    writeFutureDateErrorMessage();
                     return true;
                 }
                 else
@@ -56,7 +59,7 @@ public class TransactionActivity extends SingleFragmentActivity
     }
     //TODO: String Resources
 
-    public void writeInvalidDateErrorMessage()
+    public void writeFutureDateErrorMessage()
     {
         Toast.makeText(this, "Yikes, you can see into the future! " +
                 "Your transaction date is later than today. Please keep us in the present " +
@@ -69,6 +72,11 @@ public class TransactionActivity extends SingleFragmentActivity
     public void writeNameErrorMessage()
     {
         Toast.makeText(this, "Looks like you forgot to name you transaction!", Toast.LENGTH_SHORT).show();
+
+    }
+    public void writeInvalidDateErrorMessage()
+    {
+        Toast.makeText(this, "Your date is not from this year.", Toast.LENGTH_SHORT).show();
 
     }
 }

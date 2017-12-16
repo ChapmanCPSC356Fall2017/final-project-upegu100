@@ -167,4 +167,11 @@ public class TransactionFragment extends Fragment {
         }
         return true;
     }
+
+    public boolean isValidTransactionDate()
+    {
+        if (this.transaction.getDate().getYear() != 2017)
+            return false;
+        return true;
+    }
 }
