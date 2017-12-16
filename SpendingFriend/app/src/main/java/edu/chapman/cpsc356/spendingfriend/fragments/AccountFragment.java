@@ -125,43 +125,44 @@ public class AccountFragment extends Fragment
                     }
                 }
             });
-
-            this.accountStartingBalanceEditText.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                }
-
-                @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                }
-
-                @Override
-                public void afterTextChanged(Editable editable) {
-
-                    MoneyFormat.preventExtraDecimalNumbers(editable);
-                    if (ParseHelper.tryParseDouble(editable.toString())) {
-                        account.setStartingBalance(Double.parseDouble(editable.toString()));
-                    } else {
-                        account.setStartingBalance(0);
-                    }
-                }
-            });
-
-            this.checkingRadioButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    account.setType(AccountModel.CHECKING);
-                }
-            });
-            this.savingsRadioButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    account.setType(AccountModel.SAVINGS);
-                }
-            });
         }
+        
+        this.accountStartingBalanceEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                MoneyFormat.preventExtraDecimalNumbers(editable);
+                if (ParseHelper.tryParseDouble(editable.toString())) {
+                    account.setStartingBalance(Double.parseDouble(editable.toString()));
+                } else {
+                    account.setStartingBalance(0);
+                }
+            }
+        });
+
+        this.checkingRadioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                account.setType(AccountModel.CHECKING);
+            }
+        });
+        this.savingsRadioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                account.setType(AccountModel.SAVINGS);
+            }
+        });
+
         return v;
     }
 
